@@ -13,5 +13,9 @@
 /*.pidb
 /*.booproj
 
+/*.DS_Store
+*ReSharper*
+Thumbs.db*
+
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
