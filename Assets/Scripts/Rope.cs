@@ -150,7 +150,7 @@ namespace Assets.Scripts
             //limit_setter = end.swing1Limit;
             //limit_setter.limit = swing1Limit;
             //end.swing1Limit = limit_setter;
-            target.parent = transform;
+            //target.parent = transform;
 
             // Rope = true, The rope now exists in the scene!
             rope = true;
