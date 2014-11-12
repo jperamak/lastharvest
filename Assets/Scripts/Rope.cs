@@ -7,7 +7,7 @@ namespace Assets.Scripts
     // Require a Rigidbody and LineRenderer object for easier assembly
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(LineRenderer))]
-
+    [RequireComponent(typeof(CircleCollider2D))]
     public class Rope : MonoBehaviour
     {
         /*========================================
@@ -59,22 +59,22 @@ namespace Assets.Scripts
 
         public void Awake()
         {
+            line = gameObject.GetComponent<LineRenderer>();
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        public void OnMouseDown()
+        {
             BuildRope();
         }
 
+
         public void Update()
         {
-            // Put rope control here!
-
-
             //Destroy Rope Test	(Example of how you can use the rope dynamically)
-            if (rope && Input.GetKeyDown("d"))
+            if (rope && Input.GetMouseButtonDown(1))
             {
                 DestroyRope();
-            }
-            if (!rope && Input.GetKeyDown("r"))
-            {
-                BuildRope();
             }
         }
 
@@ -111,8 +111,6 @@ namespace Assets.Scripts
 
         private void BuildRope()
         {
-            line = gameObject.GetComponent<LineRenderer>();
-
             // Find the amount of segments based on the distance and resolution
             // Example: [resolution of 1.0 = 1 joint per unit of distance]
             segments = (int)(Vector3.Distance(transform.position, target.position) * resolution);
