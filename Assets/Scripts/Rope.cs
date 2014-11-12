@@ -140,7 +140,7 @@ namespace Assets.Scripts
             var end = target.gameObject.GetComponents<DistanceJoint2D>().Any()
                 ? target.gameObject.GetComponent<DistanceJoint2D>()
                 : target.gameObject.AddComponent<DistanceJoint2D>();
-            //end.maxDistanceOnly = true;
+            end.maxDistanceOnly = true;
             end.connectedBody = joints[joints.Length - 1].transform.rigidbody2D;
             //end.swingAxis = swingAxis;
             //var limit_setter = end;
@@ -163,7 +163,8 @@ namespace Assets.Scripts
             var rigid = joints[n].AddComponent<Rigidbody2D>();
             var col = joints[n].AddComponent<CircleCollider2D>();
             var dj = joints[n].AddComponent<DistanceJoint2D>();
-            //dj.maxDistanceOnly = true;
+            if(n==1)
+                dj.maxDistanceOnly = true;
             var hj = joints[n].AddComponent<HingeJoint2D>();
             //var limit_setter = ph.limits;
             //limit_setter.min = lowTwistLimit;
