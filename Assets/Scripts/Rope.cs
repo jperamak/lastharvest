@@ -4,7 +4,7 @@ using System.Collections;
 namespace Assets.Scripts
 {
     // Require a Rigidbody and LineRenderer object for easier assembly
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(LineRenderer))]
 
     public class Rope : MonoBehaviour
@@ -136,18 +136,16 @@ namespace Assets.Scripts
             }
 
             // Attach the joints to the target object and parent it to this object	
-            var end = target.gameObject.AddComponent<CharacterJoint>();
-            end.connectedBody = joints[joints.Length - 1].transform.rigidbody;
-            end.swingAxis = swingAxis;
-            var limit_setter = end.lowTwistLimit;
-            limit_setter.limit = lowTwistLimit;
-            end.lowTwistLimit = limit_setter;
-            limit_setter = end.highTwistLimit;
-            limit_setter.limit = highTwistLimit;
-            end.highTwistLimit = limit_setter;
-            limit_setter = end.swing1Limit;
-            limit_setter.limit = swing1Limit;
-            end.swing1Limit = limit_setter;
+            var end = target.gameObject.AddComponent<DistanceJoint2D>();
+            end.connectedBody = joints[joints.Length - 1].transform.rigidbody2D;
+            //end.swingAxis = swingAxis;
+            //var limit_setter = end;
+            //limit_setter.min = lowTwistLimit;
+            //limit_setter.max = highTwistLimit;
+            //end.limits = limit_setter;
+            //limit_setter = end.swing1Limit;
+            //limit_setter.limit = swing1Limit;
+            //end.swing1Limit = limit_setter;
             target.parent = transform;
 
             // Rope = true, The rope now exists in the scene!
@@ -158,19 +156,23 @@ namespace Assets.Scripts
         {
             joints[n] = new GameObject("Joint_" + n);
             joints[n].transform.parent = transform;
-            var rigid = joints[n].AddComponent<Rigidbody>();
-            var col = joints[n].AddComponent<SphereCollider>();
-            var ph = joints[n].AddComponent<CharacterJoint>();
-            ph.swingAxis = swingAxis;
-            var limit_setter = ph.lowTwistLimit;
-            limit_setter.limit = lowTwistLimit;
-            ph.lowTwistLimit = limit_setter;
-            limit_setter = ph.highTwistLimit;
-            limit_setter.limit = highTwistLimit;
-            ph.highTwistLimit = limit_setter;
-            limit_setter = ph.swing1Limit;
-            limit_setter.limit = swing1Limit;
-            ph.swing1Limit = limit_setter;
+            var rigid = joints[n].AddComponent<Rigidbody2D>();
+            var col = joints[n].AddComponent<CircleCollider2D>();
+            var ph = joints[n].AddComponent<DistanceJoint2D>();
+            //var limit_setter = ph.limits;
+            //limit_setter.min = lowTwistLimit;
+            //limit_setter.max = highTwistLimit;
+            //ph.limits = limit_setter;
+            //ph.swingAxis = swingAxis;
+            //var limit_setter = ph.lowTwistLimit;
+            //limit_setter.limit = lowTwistLimit;
+            //ph.lowTwistLimit = limit_setter;
+            //limit_setter = ph.highTwistLimit;
+            //limit_setter.limit = highTwistLimit;
+            //ph.highTwistLimit = limit_setter;
+            //limit_setter = ph.swing1Limit;
+            //limit_setter.limit = swing1Limit;
+            //ph.swing1Limit = limit_setter;
             //ph.breakForce = ropeBreakForce; <--------------- TODO
 
             joints[n].transform.position = segmentPos[n];
@@ -179,7 +181,7 @@ namespace Assets.Scripts
             rigid.mass = ropeMass;
             col.radius = ropeColRadius;
 
-            ph.connectedBody = n == 1 ? transform.rigidbody : joints[n - 1].rigidbody;
+            ph.connectedBody = n == 1 ? transform.rigidbody2D : joints[n - 1].rigidbody2D;
 
         }
 
@@ -187,7 +189,7 @@ namespace Assets.Scripts
         {
             // Stop Rendering Rope then Destroy all of its components
             rope = false;
-            for (int dj = 0; dj < joints.Length - 1; dj++)
+            for (int dj = 0; dj <= joints.Length - 1; dj++)
             {
                 Destroy(joints[dj]);
             }
