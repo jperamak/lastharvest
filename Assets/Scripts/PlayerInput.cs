@@ -20,7 +20,7 @@ public class PlayerInput : MonoBehaviour
 	    }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            _characterController2D.move(new Vector3(0, 0.8f));
+            _characterController2D.move(new Vector3(0, 0.4f));
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {

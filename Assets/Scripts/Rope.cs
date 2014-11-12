@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using System.Collections;
 
 namespace Assets.Scripts
@@ -136,7 +137,10 @@ namespace Assets.Scripts
             }
 
             // Attach the joints to the target object and parent it to this object	
-            var end = target.gameObject.AddComponent<DistanceJoint2D>();
+            var end = target.gameObject.GetComponents<DistanceJoint2D>().Any()
+                ? target.gameObject.GetComponent<DistanceJoint2D>()
+                : target.gameObject.AddComponent<DistanceJoint2D>();
+            //end.maxDistanceOnly = true;
             end.connectedBody = joints[joints.Length - 1].transform.rigidbody2D;
             //end.swingAxis = swingAxis;
             //var limit_setter = end;
@@ -158,7 +162,9 @@ namespace Assets.Scripts
             joints[n].transform.parent = transform;
             var rigid = joints[n].AddComponent<Rigidbody2D>();
             var col = joints[n].AddComponent<CircleCollider2D>();
-            var ph = joints[n].AddComponent<DistanceJoint2D>();
+            var dj = joints[n].AddComponent<DistanceJoint2D>();
+            //dj.maxDistanceOnly = true;
+            var hj = joints[n].AddComponent<HingeJoint2D>();
             //var limit_setter = ph.limits;
             //limit_setter.min = lowTwistLimit;
             //limit_setter.max = highTwistLimit;
@@ -181,7 +187,7 @@ namespace Assets.Scripts
             rigid.mass = ropeMass;
             col.radius = ropeColRadius;
 
-            ph.connectedBody = n == 1 ? transform.rigidbody2D : joints[n - 1].rigidbody2D;
+            dj.connectedBody = hj.connectedBody = n == 1 ? transform.rigidbody2D : joints[n - 1].rigidbody2D;
 
         }
 
