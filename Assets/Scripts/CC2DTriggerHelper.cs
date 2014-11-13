@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Original version: https://github.com/prime31/CharacterController2D
+ **/
 
 /// <summary>
 /// this script just captures the OnTrigger* messages and passes them on to the CharacterController2D

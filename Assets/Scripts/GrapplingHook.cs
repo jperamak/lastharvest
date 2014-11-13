@@ -6,12 +6,23 @@ namespace Assets.Scripts
     [RequireComponent(typeof(CircleCollider2D))]
     public class GrapplingHook : MonoBehaviour
     {
-        private Vector3 _velocity;
+        [TagSelector]
+        [SerializeField]
+        private string _hookConnectorTag;
 
+        private Vector3 _velocity;
         public Vector3 Velocity
         {
             get { return _velocity; }
             set { _velocity = value; }
+        }
+
+        [SerializeField]
+        private float _maxLength = 30.0f;
+        public float MaxLength
+        {
+            get { return _maxLength; }
+            set { _maxLength = value; }
         }
 
         private Transform _player;
@@ -28,6 +39,10 @@ namespace Assets.Scripts
         public void FixedUpdate()
         {
             transform.position += _velocity;
+            if((transform.position - _player.position).magnitude >= MaxLength)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public void LateUpdate()
@@ -50,5 +65,19 @@ namespace Assets.Scripts
             _velocity = Vector3.zero;
             _player.GetComponent<PlayerInput>().Grapple(connector.transform);
         }
+
+        public void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collision.collider.tag.Equals(_hookConnectorTag))
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    [System.AttributeUsage(System.AttributeTargets.Field, AllowMultiple = false)]
+    public class TagSelectorAttribute : PropertyAttribute
+    {
+        public bool AllowUntagged;
     }
 }

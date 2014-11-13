@@ -3,6 +3,10 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
+/**
+ * Original version: https://github.com/prime31/CharacterController2D
+ **/
+
 
 [RequireComponent( typeof( BoxCollider2D ), typeof( Rigidbody2D ) )]
 public class CharacterController2D : MonoBehaviour
