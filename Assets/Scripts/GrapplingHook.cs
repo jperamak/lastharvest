@@ -44,5 +44,11 @@ namespace Assets.Scripts
                 line.enabled = false;
             }
         }
+
+        public void Connect(HookConnector connector)
+        {
+            _velocity = Vector3.zero;
+            _player.GetComponent<PlayerInput>().Grapple(connector.transform);
+        }
     }
 }

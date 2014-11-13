@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
 	public float groundDamping = 20f; // how fast do we change direction? higher means faster
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
+    public float hookSpeed = 1f;
 
     [SerializeField]
     private GrapplingHook _hookPrefab;
@@ -72,11 +73,14 @@ public class PlayerInput : MonoBehaviour
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
 	public void Update()
 	{
-	    if (Input.GetMouseButtonDown(0))
+        if (!_isGrappling && Input.GetMouseButtonDown(0))
 	    {
             ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
 	    }
-
+        else if (Input.GetMouseButtonDown(1))
+        {
+            DetachGrappling();
+        }
 
 	    if (_isGrappling)
 	    {
@@ -144,9 +148,9 @@ public class PlayerInput : MonoBehaviour
 
     private void ThrowGrapplingHook(Vector3 direction)
     {
-        var hook = (GrapplingHook)Instantiate(_hookPrefab);
-        hook.transform.position = transform.position;
-        hook.Velocity = new Vector3(direction.x, direction.y);
+        _hook = (GrapplingHook)Instantiate(_hookPrefab);
+        _hook.transform.position = new Vector3(transform.position.x, transform.position.y, _hook.transform.position.z);
+        _hook.Velocity = new Vector3(direction.x, direction.y) * hookSpeed;
     }
 
     public void Grapple(Transform grapplingPoint)
@@ -158,6 +162,8 @@ public class PlayerInput : MonoBehaviour
     public void DetachGrappling()
     {
         _isGrappling = false;
+        Destroy(_hook.gameObject);
+        _hook = null;
     }
 }
 
