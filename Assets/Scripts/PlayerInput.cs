@@ -68,9 +68,11 @@ public class PlayerInput : MonoBehaviour
 	    if (_isGrappling)
 	    {
             var distance = _grapplingPoint.position - transform.position;
-	        if(Mathf.Abs(distance.x) < 0.1f && Mathf.Abs(distance.y) < 0.1f)
-               return;
-
+	        if (Mathf.Abs(distance.x) < 2f && Mathf.Abs(distance.y) < 2f)
+	        {
+                _controller.velocity = Vector3.zero;
+                return;
+	        }
             distance.Normalize();
             _controller.move(new Vector3(distance.x, distance.y));
 	        return;
