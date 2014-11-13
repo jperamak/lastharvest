@@ -1,30 +1,143 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerInput : MonoBehaviour
 {
+	// movement config
+	public float gravity = -25f;
+	public float runSpeed = 8f;
+	public float groundDamping = 20f; // how fast do we change direction? higher means faster
+	public float inAirDamping = 5f;
+	public float jumpHeight = 3f;
 
-    private CharacterController2D _characterController2D;
+	[HideInInspector]
+	private float normalizedHorizontalSpeed = 0;
 
-	public void Start ()
+	private CharacterController2D _controller;
+	private Animator _animator;
+	private RaycastHit2D _lastControllerColliderHit;
+	private Vector3 _velocity;
+
+    private bool _isGrappling = false;
+    private Transform _grapplingPoint;
+
+	void Awake()
 	{
-	    _characterController2D = GetComponent<CharacterController2D>();
+		//_animator = GetComponent<Animator>();
+		_controller = GetComponent<CharacterController2D>();
+
+		// listen to some events for illustration purposes
+		_controller.onControllerCollidedEvent += onControllerCollider;
+		_controller.onTriggerEnterEvent += onTriggerEnterEvent;
+		_controller.onTriggerExitEvent += onTriggerExitEvent;
 	}
-	
-	public void FixedUpdate () 
-    {
-	    if (Input.GetKey(KeyCode.LeftArrow))
+
+
+	#region Event Listeners
+
+	void onControllerCollider( RaycastHit2D hit )
+	{
+		// bail out on plain old ground hits cause they arent very interesting
+		if( hit.normal.y == 1f )
+			return;
+
+		// logs any collider hits if uncommented. it gets noisy so it is commented out for the demo
+		//Debug.Log( "flags: " + _controller.collisionState + ", hit.normal: " + hit.normal );
+	}
+
+
+	void onTriggerEnterEvent( Collider2D col )
+	{
+		Debug.Log( "onTriggerEnterEvent: " + col.gameObject.name );
+	}
+
+
+	void onTriggerExitEvent( Collider2D col )
+	{
+		Debug.Log( "onTriggerExitEvent: " + col.gameObject.name );
+	}
+
+	#endregion
+
+
+	// the Update loop contains a very simple example of moving the character around and controlling the animation
+	public void Update()
+	{
+	    if (_isGrappling)
 	    {
-	        _characterController2D.move(new Vector3(-0.4f, 0));
+            var distance = _grapplingPoint.position - transform.position;
+	        if (Mathf.Abs(distance.x) < 2f && Mathf.Abs(distance.y) < 2f)
+	        {
+                _controller.velocity = Vector3.zero;
+                return;
+	        }
+            distance.Normalize();
+            _controller.move(new Vector3(distance.x, distance.y));
+	        return;
 	    }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            _characterController2D.move(new Vector3(0, 0.4f));
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            _characterController2D.move(new Vector3(0.4f, 0));
-        }
+
+		// grab our current _velocity to use as a base for all calculations
+		_velocity = _controller.velocity;
+
+		if( _controller.isGrounded )
+			_velocity.y = 0;
+
+		if( Input.GetKey( KeyCode.RightArrow ) )
+		{
+			normalizedHorizontalSpeed = 1;
+			if( transform.localScale.x < 0f )
+				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+
+            //if( _controller.isGrounded )
+            //    _animator.Play( Animator.StringToHash( "Run" ) );
+		}
+		else if( Input.GetKey( KeyCode.LeftArrow ) )
+		{
+			normalizedHorizontalSpeed = -1;
+			if( transform.localScale.x > 0f )
+				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+
+            //if( _controller.isGrounded )
+            //    _animator.Play( Animator.StringToHash( "Run" ) );
+		}
+		else
+		{
+			normalizedHorizontalSpeed = 0;
+
+            //if( _controller.isGrounded )
+            //    _animator.Play( Animator.StringToHash( "Idle" ) );
+		}
+
+
+		// we can only jump whilst grounded
+		if( _controller.isGrounded && Input.GetKey( KeyCode.UpArrow ) )
+		{
+			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
+            //_animator.Play( Animator.StringToHash( "Jump" ) );
+		}
+
+
+		// apply horizontal speed smoothing it
+		var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?
+		_velocity.x = Mathf.Lerp( _velocity.x, normalizedHorizontalSpeed * runSpeed, Time.deltaTime * smoothedMovementFactor );
+
+		// apply gravity before moving
+		_velocity.y += gravity * Time.deltaTime;
+
+		_controller.move( _velocity * Time.deltaTime );
 	}
+
+    public void Grapple(Transform grapplingPoint)
+    {
+        _grapplingPoint = grapplingPoint;
+        _isGrappling = true;
+    }
+
+    public void DetachGrappling()
+    {
+        _isGrappling = false;
+    }
 }
+
