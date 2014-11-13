@@ -12,6 +12,10 @@ public class PlayerInput : MonoBehaviour
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
 
+    [SerializeField]
+    private GrapplingHook _hookPrefab;
+    public GrapplingHook HookPrefab { get { return _hookPrefab; } }
+
 	[HideInInspector]
 	private float normalizedHorizontalSpeed = 0;
 
@@ -20,14 +24,17 @@ public class PlayerInput : MonoBehaviour
 	private RaycastHit2D _lastControllerColliderHit;
 	private Vector3 _velocity;
 
-    private bool _isGrappling = false;
+    private GrapplingHook _hook;
+    private bool _isGrappling;
     private Transform _grapplingPoint;
+
+    private Camera _mainCamera;
 
 	void Awake()
 	{
 		//_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
-
+	    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 		// listen to some events for illustration purposes
 		_controller.onControllerCollidedEvent += onControllerCollider;
 		_controller.onTriggerEnterEvent += onTriggerEnterEvent;
@@ -65,6 +72,12 @@ public class PlayerInput : MonoBehaviour
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
 	public void Update()
 	{
+	    if (Input.GetMouseButtonDown(0))
+	    {
+            ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	    }
+
+
 	    if (_isGrappling)
 	    {
             var distance = _grapplingPoint.position - transform.position;
@@ -128,6 +141,13 @@ public class PlayerInput : MonoBehaviour
 
 		_controller.move( _velocity * Time.deltaTime );
 	}
+
+    private void ThrowGrapplingHook(Vector3 direction)
+    {
+        var hook = (GrapplingHook)Instantiate(_hookPrefab);
+        hook.transform.position = transform.position;
+        hook.Velocity = new Vector3(direction.x, direction.y);
+    }
 
     public void Grapple(Transform grapplingPoint)
     {
