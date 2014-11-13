@@ -65,7 +65,8 @@ namespace Assets.Scripts
 
         public void OnMouseDown()
         {
-            BuildRope();
+            BuildRope(); //TODO: This should only draw the rope
+            target.GetComponent<PlayerInput>().Grapple(transform);
         }
 
 
@@ -75,6 +76,7 @@ namespace Assets.Scripts
             if (rope && Input.GetMouseButtonDown(1))
             {
                 DestroyRope();
+                target.GetComponent<PlayerInput>().DetachGrappling();
             }
         }
 

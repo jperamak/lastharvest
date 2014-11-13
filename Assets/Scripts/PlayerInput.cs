@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -19,8 +20,8 @@ public class PlayerInput : MonoBehaviour
 	private RaycastHit2D _lastControllerColliderHit;
 	private Vector3 _velocity;
 
-
-
+    private bool _isGrappling = false;
+    private Transform _grapplingPoint;
 
 	void Awake()
 	{
@@ -62,8 +63,16 @@ public class PlayerInput : MonoBehaviour
 
 
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
-	void Update()
+	public void Update()
 	{
+	    if (_isGrappling)
+	    {
+            var direction = _grapplingPoint.position - transform.position;
+            direction.Normalize();
+            _controller.move(new Vector3(direction.x, direction.y));
+	        return;
+	    }
+
 		// grab our current _velocity to use as a base for all calculations
 		_velocity = _controller.velocity;
 
@@ -115,5 +124,15 @@ public class PlayerInput : MonoBehaviour
 		_controller.move( _velocity * Time.deltaTime );
 	}
 
+    public void Grapple(Transform grapplingPoint)
+    {
+        _grapplingPoint = grapplingPoint;
+        _isGrappling = true;
+    }
+
+    public void DetachGrappling()
+    {
+        _isGrappling = false;
+    }
 }
 
