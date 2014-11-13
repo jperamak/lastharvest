@@ -67,9 +67,12 @@ public class PlayerInput : MonoBehaviour
 	{
 	    if (_isGrappling)
 	    {
-            var direction = _grapplingPoint.position - transform.position;
-            direction.Normalize();
-            _controller.move(new Vector3(direction.x, direction.y));
+            var distance = _grapplingPoint.position - transform.position;
+	        if(Mathf.Abs(distance.x) < 0.1f && Mathf.Abs(distance.y) < 0.1f)
+               return;
+
+            distance.Normalize();
+            _controller.move(new Vector3(distance.x, distance.y));
 	        return;
 	    }
 
