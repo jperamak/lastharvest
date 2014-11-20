@@ -25,6 +25,14 @@ namespace Assets.Scripts
             set { _maxLength = value; }
         }
 
+
+        public SoundEffect throwSound;
+        public SoundEffect grabSound;
+        public SoundEffect collideSound;
+        public SoundEffect pullBackSound;
+        public SoundEffect pullBackEndSound;
+        public SoundEffect releaseSound;
+
         private Transform _player;
 
         private LineRenderer line;	
@@ -33,7 +41,9 @@ namespace Assets.Scripts
         public void Awake()
         {
             line = gameObject.GetComponent<LineRenderer>();
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
+            _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
+            throwSound.Do(s => s.PlayEffect());
+
         }
 
         public void FixedUpdate()
@@ -41,6 +51,7 @@ namespace Assets.Scripts
             transform.position += _velocity;
             if((transform.position - _player.position).magnitude >= MaxLength)
             {
+                pullBackSound.Do(s => s.PlayEffect());
                 Destroy(gameObject);
             }
         }
@@ -64,12 +75,14 @@ namespace Assets.Scripts
         {
             _velocity = Vector3.zero;
             _player.GetComponent<PlayerInput>().Grapple(connector.transform);
+            grabSound.Do(s => s.PlayEffect());
         }
 
         public void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.collider.tag.Equals(_hookConnectorTag))
             {
+                collideSound.Do(s => s.PlayEffect());
                 Destroy(gameObject);
             }
         }

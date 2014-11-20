@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(AudioSource))]
     public class SoundEffect : MonoBehaviour
     {
         public string name = "Some Effect";
@@ -28,12 +29,12 @@ namespace Assets.Scripts
             switch (Mode)
             {
                 case ClipCyclingMode.None:
-                    PlayEffect(_audioClips.FirstOrDefault());
+                    PlayEffect(_audioClips.First());
                     break;
                 case ClipCyclingMode.InOrder:
                     if (_currentClip >= _audioClips.Count)
                         _currentClip = 0;
-                    PlayEffect(_audioClips.FirstOrDefault());
+                    PlayEffect(_audioClips[_currentClip]);
                     _currentClip++;
                     break;
                 case ClipCyclingMode.Random:
