@@ -7,8 +7,6 @@ namespace Assets.Scripts
     [RequireComponent(typeof(AudioSource))]
     public class SoundEffect : MonoBehaviour
     {
-        public string name = "Some Effect";
-
         [SerializeField]
         private List<AudioSource> _audioClips = new List<AudioSource> {null}; //initial size 1
         public IEnumerable<AudioSource> AudioClips { get { return _audioClips; } }
