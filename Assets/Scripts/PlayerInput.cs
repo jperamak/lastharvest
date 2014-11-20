@@ -78,20 +78,18 @@ public class PlayerInput : MonoBehaviour
 	{
         if (Input.GetMouseButtonDown(0))
 	    {
-	        if (_isGrappling)
-	        {
-	            DetachGrappling();
-                ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
-				
-	        }
-	        else
-	        {
+	        if (!_isGrappling)
+			{
                 ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
 	        }         
 	    }
 
+		if (Input.GetKey(KeyCode.Space) && _isGrappling )
+	    {
+			DetachGrappling();				
+	    }		
 
-	    if (_isGrappling)
+		if (_isGrappling)
 	    {
             var distance = _grapplingPoint.position - transform.position;
 	        if (Mathf.Abs(distance.x) < 2f && Mathf.Abs(distance.y) < 2f)
@@ -141,7 +139,7 @@ public class PlayerInput : MonoBehaviour
 
 
 		// we can only jump whilst grounded
-        if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W))
+        if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W, KeyCode.Space))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
             //_animator.Play( Animator.StringToHash( "Jump" ) );
