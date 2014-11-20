@@ -1,21 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Player : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+[RequireComponent(typeof(PlayerInput))]
+public class Player : MonoBehaviour 
+{
 	public void Harvest(Harvestable h)
 	{
-		GameObject.Destroy (h.gameObject);
+		Destroy(h.gameObject);
 	}
-
 }
