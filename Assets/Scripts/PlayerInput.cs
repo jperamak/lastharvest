@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
     public float hookSpeed = 1f;
+    public bool disableMovementInAir;
 
     [SerializeField]
     private GrapplingHook _hookPrefab;
@@ -31,7 +32,7 @@ public class PlayerInput : MonoBehaviour
 
     private Camera _mainCamera;
 
-	void Awake()
+	public void Awake()
 	{
 		//_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
@@ -73,14 +74,18 @@ public class PlayerInput : MonoBehaviour
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
 	public void Update()
 	{
-        if (!_isGrappling && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
 	    {
-            ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	        if (_isGrappling)
+	        {
+	            DetachGrappling();
+	        }
+	        else
+	        {
+                ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	        }         
 	    }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            DetachGrappling();
-        }
+
 
 	    if (_isGrappling)
 	    {
@@ -102,8 +107,9 @@ public class PlayerInput : MonoBehaviour
 		if( _controller.isGrounded )
 			_velocity.y = 0;
 
-		if( Input.GetKey( KeyCode.RightArrow ) )
+        if (InputHelpers.IsAnyKey(KeyCode.RightArrow, KeyCode.D) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
+
 			normalizedHorizontalSpeed = 1;
 			if( transform.localScale.x < 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
@@ -111,7 +117,7 @@ public class PlayerInput : MonoBehaviour
             //if( _controller.isGrounded )
             //    _animator.Play( Animator.StringToHash( "Run" ) );
 		}
-		else if( Input.GetKey( KeyCode.LeftArrow ) )
+        else if (InputHelpers.IsAnyKey(KeyCode.LeftArrow, KeyCode.A) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
 			normalizedHorizontalSpeed = -1;
 			if( transform.localScale.x > 0f )
@@ -130,7 +136,7 @@ public class PlayerInput : MonoBehaviour
 
 
 		// we can only jump whilst grounded
-		if( _controller.isGrounded && Input.GetKey( KeyCode.UpArrow ) )
+        if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
             //_animator.Play( Animator.StringToHash( "Jump" ) );
