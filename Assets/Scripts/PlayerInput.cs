@@ -169,12 +169,9 @@ public class PlayerInput : MonoBehaviour
 
     public void DetachGrappling()
     {
-		if (_isGrappling)
-		{
-			_isGrappling = false;
-			Destroy (_hook.gameObject);
-			_hook = null;
-		}
+        Destroy(_hook.gameObject);
+        _isGrappling = false;
+        _hook = null;
     }
 }
 
