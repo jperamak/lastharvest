@@ -7,7 +7,7 @@ public class Harvestable : MonoBehaviour {
 	{
 
 		if (other.gameObject.CompareTag("Player"))
-			GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().Harvest(this);
+			other.gameObject.GetComponent<Player>().Harvest(this);
 	}
 
 
