@@ -74,14 +74,18 @@ public class PlayerInput : MonoBehaviour
 	// the Update loop contains a very simple example of moving the character around and controlling the animation
 	public void Update()
 	{
-        if (!_isGrappling && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
 	    {
-            ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	        if (_isGrappling)
+	        {
+	            DetachGrappling();
+	        }
+	        else
+	        {
+                ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	        }         
 	    }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            DetachGrappling();
-        }
+
 
 	    if (_isGrappling)
 	    {
