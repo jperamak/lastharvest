@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
     public float hookSpeed = 1f;
+    public bool disableMovementInAir;
 
     [SerializeField]
     private GrapplingHook _hookPrefab;
@@ -31,7 +32,7 @@ public class PlayerInput : MonoBehaviour
 
     private Camera _mainCamera;
 
-	void Awake()
+	public void Awake()
 	{
 		//_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
@@ -101,8 +102,9 @@ public class PlayerInput : MonoBehaviour
 		if( _controller.isGrounded )
 			_velocity.y = 0;
 
-		if( Input.GetKey( KeyCode.RightArrow ) )
+		if( Input.GetKey( KeyCode.RightArrow ) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
+
 			normalizedHorizontalSpeed = 1;
 			if( transform.localScale.x < 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
@@ -110,7 +112,7 @@ public class PlayerInput : MonoBehaviour
             //if( _controller.isGrounded )
             //    _animator.Play( Animator.StringToHash( "Run" ) );
 		}
-		else if( Input.GetKey( KeyCode.LeftArrow ) )
+        else if (Input.GetKey(KeyCode.LeftArrow) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
 			normalizedHorizontalSpeed = -1;
 			if( transform.localScale.x > 0f )
