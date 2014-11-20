@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
 	public float inAirDamping = 5f;
 	public float jumpHeight = 3f;
     public float hookSpeed = 1f;
+    public float grapplingSpeed = 1f;
     public bool disableMovementInAir;
 
     [SerializeField]
@@ -96,7 +97,7 @@ public class PlayerInput : MonoBehaviour
                 return;
 	        }
             distance.Normalize();
-			//distance.Scale(new Vector3(.5f,.5f,.5f));
+	        distance *= grapplingSpeed;
             _controller.move(new Vector3(distance.x, distance.y));
 	        return;
 	    }
