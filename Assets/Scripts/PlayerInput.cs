@@ -107,7 +107,7 @@ public class PlayerInput : MonoBehaviour
 		if( _controller.isGrounded )
 			_velocity.y = 0;
 
-		if( Input.GetKey( KeyCode.RightArrow ) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
+        if (InputHelpers.IsAnyKey(KeyCode.RightArrow, KeyCode.D) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
 
 			normalizedHorizontalSpeed = 1;
@@ -117,7 +117,7 @@ public class PlayerInput : MonoBehaviour
             //if( _controller.isGrounded )
             //    _animator.Play( Animator.StringToHash( "Run" ) );
 		}
-        else if (Input.GetKey(KeyCode.LeftArrow) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
+        else if (InputHelpers.IsAnyKey(KeyCode.LeftArrow, KeyCode.A) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
 			normalizedHorizontalSpeed = -1;
 			if( transform.localScale.x > 0f )
@@ -136,7 +136,7 @@ public class PlayerInput : MonoBehaviour
 
 
 		// we can only jump whilst grounded
-		if( _controller.isGrounded && Input.GetKey( KeyCode.UpArrow ) )
+        if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
             //_animator.Play( Animator.StringToHash( "Jump" ) );
