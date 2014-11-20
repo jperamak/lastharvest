@@ -2,7 +2,6 @@
 
 namespace Assets.Scripts
 {
-    [RequireComponent(typeof(CircleCollider2D))]
     public class HookConnector : MonoBehaviour
     {
         public void OnCollisionEnter2D(Collision2D collision)
