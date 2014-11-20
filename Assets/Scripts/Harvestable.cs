@@ -1,23 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using Assets.Scripts;
+using UnityEngine;
 
 public class Harvestable : MonoBehaviour {
 
-	void OnTriggerEnter2D(Collider2D other)
+	public void OnTriggerEnter2D(Collider2D other)
 	{
-
-		if (other.gameObject.CompareTag("Player"))
-			other.gameObject.GetComponent<Player>().Harvest(this);
-	}
-
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        if (other.gameObject.CompareTag(Tags.Player))
+        {
+            other.GetComponent<Player>().Harvest(this);
+        }
 	}
 }
