@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Helpers;
+﻿using System.Collections;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -26,6 +27,7 @@ namespace Assets.Scripts
             set { _maxLength = value; }
         }
 
+        public float preventFromHookingSeconds = 0.05f;
 
         public SoundEffect throwSound;
         public SoundEffect grabSound;
@@ -44,7 +46,15 @@ namespace Assets.Scripts
             line = gameObject.GetComponent<LineRenderer>();
             _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
             throwSound.Do(s => s.PlayEffect());
+            StartCoroutine(PreventFromHooking(preventFromHookingSeconds));
+        }
 
+        private IEnumerator PreventFromHooking(float seconds)
+        {
+            collider2D.enabled = false;
+            yield return new WaitForSeconds(seconds);
+            collider2D.enabled = true;
+            yield return null;
         }
 
         public void FixedUpdate()

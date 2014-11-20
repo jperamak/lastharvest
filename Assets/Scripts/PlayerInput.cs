@@ -99,7 +99,7 @@ public class PlayerInput : MonoBehaviour
 	        }
             distance.Normalize();
 
-	        distance *= grapplingSpeed;
+	        distance *= grapplingSpeed * Time.deltaTime;
             _controller.move(new Vector3(distance.x, distance.y));
 	        return;
 	    }
