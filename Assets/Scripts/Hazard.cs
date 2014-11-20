@@ -7,7 +7,7 @@ public class Hazard : MonoBehaviour
 	{
 	    if (other.gameObject.CompareTag(Tags.Player))
 	    {
-	        Application.LoadLevel (Application.loadedLevelName);
+	        other.GetComponent<Player>().Die();
 	    }
 
 	}
