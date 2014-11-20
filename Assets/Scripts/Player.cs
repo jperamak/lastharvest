@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     private IEnumerator RestartLevel()
     {
         dieSound.Do(s => s.PlayEffect());
-        yield return new WaitForSeconds(1.0f);
+        
+		//yield return new WaitForSeconds(1.0f);
         Application.LoadLevel(Application.loadedLevelName);
         yield return null;
     }
