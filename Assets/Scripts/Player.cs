@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Assets.Scripts;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]

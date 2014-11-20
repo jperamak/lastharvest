@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Helpers;
 
 [RequireComponent(typeof(CharacterController2D))]
 public class PlayerInput : MonoBehaviour

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Helpers
 {
     public static class Monads
     {

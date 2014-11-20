@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 public class Harvestable : MonoBehaviour {
