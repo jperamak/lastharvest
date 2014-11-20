@@ -18,7 +18,7 @@ namespace Assets.Scripts
         public float minVolume = 1f;
         public float maxVolume = 1f;
 
-        public ClipCyclingMode Mode = ClipCyclingMode.None;
+        public ClipCyclingMode Mode = ClipCyclingMode.Single;
 
         private int _currentClip;
 
@@ -27,7 +27,7 @@ namespace Assets.Scripts
         {
             switch (Mode)
             {
-                case ClipCyclingMode.None:
+                case ClipCyclingMode.Single:
                     PlayEffect(_audioClips.First());
                     break;
                 case ClipCyclingMode.InOrder:
@@ -52,7 +52,7 @@ namespace Assets.Scripts
 
     public enum ClipCyclingMode
     {
-        None,
+        Single,
         InOrder,
         Random
     }
