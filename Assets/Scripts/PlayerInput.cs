@@ -92,6 +92,7 @@ public class PlayerInput : MonoBehaviour
                 return;
 	        }
             distance.Normalize();
+			distance.Scale(new Vector3(.5f,.5f,.5f));
             _controller.move(new Vector3(distance.x, distance.y));
 	        return;
 	    }
