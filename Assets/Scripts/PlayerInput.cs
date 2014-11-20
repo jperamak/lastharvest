@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 	public float jumpHeight = 3f;
     public float hookSpeed = 1f;
 	public float hookPullSpeed = 1f;
+    public float grapplingSpeed = 1f;
     public bool disableMovementInAir;
 
     [SerializeField]
@@ -99,8 +100,13 @@ public class PlayerInput : MonoBehaviour
                 return;
 	        }
             distance.Normalize();
+<<<<<<< HEAD
 			distance *= hookPullSpeed;
 			_controller.move(new Vector3(distance.x, distance.y));
+=======
+	        distance *= grapplingSpeed;
+            _controller.move(new Vector3(distance.x, distance.y));
+>>>>>>> b226b129c4dfe1fc1e68c52ce978166c842a29cf
 	        return;
 	    }
 
@@ -171,12 +177,9 @@ public class PlayerInput : MonoBehaviour
 
     public void DetachGrappling()
     {
-		if (_isGrappling)
-		{
-			_isGrappling = false;
-			Destroy (_hook.gameObject);
-			_hook = null;
-		}
+        Destroy(_hook.gameObject);
+        _isGrappling = false;
+        _hook = null;
     }
 }
 
