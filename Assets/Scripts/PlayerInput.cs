@@ -78,7 +78,7 @@ public class PlayerInput : MonoBehaviour
 	{
         if (Input.GetMouseButtonDown(0))
 	    {
-	        if (!_isGrappling)
+	        if (!_isGrappling && _hook == null)
 			{
                 ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
 	        }         
