@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	private Player _player;
 	public int currenLevel = 1;
 	public List<FamilyMember> family;
+	private int harvestables;
 
 	void Start ()
 	{
@@ -16,24 +17,28 @@ public class GameController : MonoBehaviour {
 	    _player.Harvested += OnHarvested;
 		DontDestroyOnLoad(this);
 		StartFamily ();
+		harvestables = GameObject.FindGameObjectsWithTag ("Harvestable").Length;
 	}
 
 	private void OnHarvested(object sender, HarvestEventArgs args)
 	{
 		Debug.Log ("Harvested: " + args.Harvestable);
 		Destroy (args.Harvestable.gameObject);
-		if (!GameObject.FindGameObjectsWithTag("Harvestable").Any())
+		harvestables--;
+		if (harvestables <= 0)
 			Debug.Log ("done");
-			//NextLevel ();
+			//StartCoroutine(NextLevel ());
 	}
 
-	private void NextLevel()
+	IEnumerator NextLevel()
 	{
 		//loading screen
+		Feed ();
+		Application.LoadLevel ("LoadingScreen");
+		yield return new WaitForSeconds (5);
 		//feed family
-
-
 		Application.LoadLevel (++currenLevel);
+		harvestables = GameObject.FindGameObjectsWithTag ("Harvestable").Length;
 	}
 
 	private void StartFamily()
