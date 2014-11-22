@@ -16,6 +16,8 @@ public class PlayerInput : MonoBehaviour
     public float grapplingSpeed = 1f;
     public bool disableMovementInAir;
 
+    public Vector3 aimLaserOffset = Vector3.zero;
+
     [SerializeField]
     private GrapplingHook _hookPrefab;
     public GrapplingHook HookPrefab { get { return _hookPrefab; } }
@@ -178,7 +180,7 @@ public class PlayerInput : MonoBehaviour
     private void DrawHookAimLine(Vector2 mousePosition)
     {
         var direction = (mousePosition - (Vector2)transform.position).normalized;
-        _lineRenderer.SetPosition(0, transform.position);
+        _lineRenderer.SetPosition(0, transform.position + aimLaserOffset);
         _lineRenderer.SetPosition(1, transform.position + ((Vector3)direction * _hookPrefab.MaxLength));
     }
 
