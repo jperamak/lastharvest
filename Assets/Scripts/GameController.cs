@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameController : MonoBehaviour {
 
-	// Use this for initialization
+	public static int food;
+	private Player _player;
+
 	void Start () {
-	
+		//_player.Harvest += OnHarvested;
+		DontDestroyOnLoad(this);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	private void OnHarvested(object sender, HarvestEventArgs args)
+	{
+		Debug.Log ("Harvested: " + args.Harvestable);
 	}
+
 }
