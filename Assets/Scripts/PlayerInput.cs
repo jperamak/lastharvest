@@ -83,7 +83,11 @@ public class PlayerInput : MonoBehaviour
 	            var distance = (_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
 	            distance.z = 0;
                 ThrowGrapplingHook(distance.normalized);
-	        }         
+	        }
+            else if(_isGrappling)
+            {
+                DetachGrappling();
+            }
 	    }
 
 		if (Input.GetKey(KeyCode.Space) && _isGrappling )
