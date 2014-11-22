@@ -79,8 +79,10 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
 	    {
 	        if (!_isGrappling && _hook == null)
-			{
-                ThrowGrapplingHook((_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized);
+	        {
+	            var distance = (_mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+	            distance.z = 0;
+                ThrowGrapplingHook(distance.normalized);
 	        }         
 	    }
 
@@ -97,6 +99,7 @@ public class PlayerInput : MonoBehaviour
                 _controller.velocity = Vector3.zero;
                 return;
 	        }
+	        distance.z = 0;
             distance.Normalize();
 
 	        distance *= grapplingSpeed * Time.deltaTime;
