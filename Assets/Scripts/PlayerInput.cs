@@ -90,7 +90,7 @@ public class PlayerInput : MonoBehaviour
             }
 	    }
 
-		if (Input.GetKey(KeyCode.Space) && _isGrappling )
+		if (Input.GetKeyDown(KeyCode.Space) && _isGrappling )
 	    {
 			DetachGrappling();				
 	    }		
@@ -180,7 +180,7 @@ public class PlayerInput : MonoBehaviour
     public void DetachGrappling()
     {
         _isGrappling = false;
-        Destroy(_hook.gameObject);
+        _hook.Do(h => Destroy(h.gameObject));
         _hook = null;
     }
 }
