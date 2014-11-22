@@ -106,7 +106,7 @@ public class PlayerInput : MonoBehaviour
 		if (_isGrappling)
 	    {
             Vector2 direction = _grapplingPoint.position - transform.position;
-	        if (!constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
+	        if (constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
                 _controller.velocity = Vector3.zero;
                 return;
