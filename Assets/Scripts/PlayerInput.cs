@@ -18,6 +18,9 @@ public class PlayerInput : MonoBehaviour
     public bool constantSpeedGrappling = true;
     public float grapplingAcceleration = 2.0f;
 
+    [Range(0.0f, 0.1f)]
+    public float grapplingDamping = 0.01f;
+
     public Vector3 aimLaserOffset = Vector3.zero;
 
     [SerializeField]
@@ -122,7 +125,7 @@ public class PlayerInput : MonoBehaviour
 	        else
 	        {
                 _controller.velocity += (Vector3)direction * grapplingAcceleration;
-                _controller.move(_controller.velocity * Time.deltaTime);
+                _controller.move(_controller.velocity * Time.deltaTime * (1-grapplingDamping));
 	        }
             return;	        
 	    }
