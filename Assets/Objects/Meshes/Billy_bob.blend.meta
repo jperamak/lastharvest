@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: 7645cb2ff57c0284ea71bef4e850bc24
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Billy_rig
+    100004: Bone
+    100006: chest
+    100008: f_index_01_L
+    100010: f_index_02_L
+    100012: f_middle_01_L
+    100014: f_middle_02_L
+    100016: f_pinky_01_L
+    100018: f_pinky_02_L
+    100020: f_ring_01_L
+    100022: f_ring_02_L
+    100024: foot_L
+    100026: foot_L_001IK
+    100028: foot_R
+    100030: foot_R_001IK
+    100032: forearm_L
+    100034: forearm_R
+    100036: forearm_R_001
+    100038: forearm_R_002
+    100040: forearm_R_003
+    100042: hand_L
+    100044: head
+    100046: hips
+    100048: metarig
+    100050: palm_01_L
+    100052: palm_02_L
+    100054: palm_03_L
+    100056: palm_04_L
+    100058: shin_L
+    100060: shin_R
+    100062: shoulder_L
+    100064: shoulder_R
+    100066: thigh_L
+    100068: thigh_R
+    100070: thumb_01_L
+    100072: thumb_02_L
+    100074: thumb_03_L
+    100076: toe_L
+    100078: toe_R
+    100080: upper_arm_L
+    100082: upper_arm_R
+    400000: //RootNode
+    400002: Billy_rig
+    400004: Bone
+    400006: chest
+    400008: f_index_01_L
+    400010: f_index_02_L
+    400012: f_middle_01_L
+    400014: f_middle_02_L
+    400016: f_pinky_01_L
+    400018: f_pinky_02_L
+    400020: f_ring_01_L
+    400022: f_ring_02_L
+    400024: foot_L
+    400026: foot_L_001IK
+    400028: foot_R
+    400030: foot_R_001IK
+    400032: forearm_L
+    400034: forearm_R
+    400036: forearm_R_001
+    400038: forearm_R_002
+    400040: forearm_R_003
+    400042: hand_L
+    400044: head
+    400046: hips
+    400048: metarig
+    400050: palm_01_L
+    400052: palm_02_L
+    400054: palm_03_L
+    400056: palm_04_L
+    400058: shin_L
+    400060: shin_R
+    400062: shoulder_L
+    400064: shoulder_R
+    400066: thigh_L
+    400068: thigh_R
+    400070: thumb_01_L
+    400072: thumb_02_L
+    400074: thumb_03_L
+    400076: toe_L
+    400078: toe_R
+    400080: upper_arm_L
+    400082: upper_arm_R
+    4300000: Billy_rig
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Billy_rig
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 2
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .300000012
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
