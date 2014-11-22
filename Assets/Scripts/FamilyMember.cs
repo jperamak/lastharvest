@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class FamilyMember : MonoBehaviour {
+public class FamilyMember {
 
 
 	public int health;
