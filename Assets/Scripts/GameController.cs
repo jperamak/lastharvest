@@ -21,7 +21,6 @@ public class GameController : MonoBehaviour {
 	private void OnHarvested(object sender, HarvestEventArgs args)
 	{
 		Debug.Log ("Harvested: " + args.Harvestable);
-		Destroy (args.Harvestable.gameObject);
 		if (Done ())
 			NextLevel ();
 	}
