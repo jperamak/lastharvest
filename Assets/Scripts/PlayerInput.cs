@@ -103,6 +103,7 @@ public class PlayerInput : MonoBehaviour
                 _controller.velocity = Vector3.zero;
                 return;
 	        }
+
 	        distance.z = 0;
             distance.Normalize();
 
