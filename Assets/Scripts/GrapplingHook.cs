@@ -44,6 +44,10 @@ namespace Assets.Scripts
         public void Awake()
         {
             line = gameObject.GetComponent<LineRenderer>();
+            line.SetColors(Color.white, Color.black);
+            line.SetWidth(0.9f, 0.9f);
+            line.SetVertexCount(2);
+            line.material = new Material(Shader.Find("Particles/Additive"));
             _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
             throwSound.Do(s => s.PlayEffect());
             StartCoroutine(PreventFromHooking(preventFromHookingSeconds));

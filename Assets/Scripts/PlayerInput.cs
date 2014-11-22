@@ -1,9 +1,9 @@
 ﻿using Assets.Scripts;
 using UnityEngine;
-using System.Collections;
 using Assets.Scripts.Helpers;
 
 [RequireComponent(typeof(CharacterController2D))]
+[RequireComponent(typeof(LineRenderer))]
 public class PlayerInput : MonoBehaviour
 {
 	// movement config
@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public float hookSpeed = 1f;
     public float grapplingSpeed = 1f;
     public bool disableMovementInAir;
+
+    public Vector3 aimLaserOffset = Vector3.zero;
 
     [SerializeField]
     private GrapplingHook _hookPrefab;
@@ -33,12 +35,18 @@ public class PlayerInput : MonoBehaviour
     private Transform _grapplingPoint;
 
     private Camera _mainCamera;
+    private LineRenderer _lineRenderer;
 
 	public void Awake()
 	{
 		//_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
 	    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+	    _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.SetVertexCount(2);
+        _lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+        _lineRenderer.SetColors(Color.black, Color.red);
+        _lineRenderer.SetWidth(0.4f, 0.4f);
 		// listen to some events for illustration purposes
 		_controller.onControllerCollidedEvent += onControllerCollider;
 		_controller.onTriggerEnterEvent += onTriggerEnterEvent;
@@ -163,6 +171,18 @@ public class PlayerInput : MonoBehaviour
 
 		_controller.move( _velocity * Time.deltaTime );
 	}
+
+    public void LateUpdate()
+    {
+        DrawHookAimLine(_mainCamera.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    private void DrawHookAimLine(Vector2 mousePosition)
+    {
+        var direction = (mousePosition - (Vector2)transform.position).normalized;
+        _lineRenderer.SetPosition(0, transform.position + aimLaserOffset);
+        _lineRenderer.SetPosition(1, transform.position + ((Vector3)direction * _hookPrefab.MaxLength));
+    }
 
     private void ThrowGrapplingHook(Vector3 direction)
     {
