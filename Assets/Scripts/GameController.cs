@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class GameController : MonoBehaviour {
 
 	public static int food;
 	private Player _player;
 
-	void Start () {
-		//_player.Harvest += OnHarvested;
+	void Start ()
+	{
+	    _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+	    _player.Harvested += OnHarvested;
 		DontDestroyOnLoad(this);
 	}
 
