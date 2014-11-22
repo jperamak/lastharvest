@@ -97,11 +97,13 @@ public class PlayerInput : MonoBehaviour
                 DetachGrappling();
             }
 	    }
-
-		if (Input.GetKeyDown(KeyCode.Space) && _isGrappling )
+	    else if (Input.GetMouseButtonUp(0))
 	    {
-			DetachGrappling();				
-	    }		
+	        if(_isGrappling)
+                DetachGrappling();
+            else if (_hook != null)
+                _hook.Do(h => Destroy(h.gameObject));
+	    }
 
 		if (_isGrappling)
 	    {
