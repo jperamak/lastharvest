@@ -98,7 +98,7 @@ namespace Assets.Scripts
             if (!collision.collider.tag.Equals(_hookConnectorTag))
             {
                 collideSound.Do(s => s.PlayEffect());
-                Destroy(gameObject);
+                _player.GetComponent<PlayerInput>().DetachGrappling();
             }
         }
     }
