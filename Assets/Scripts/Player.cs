@@ -2,6 +2,7 @@
 using Assets.Scripts;
 using Assets.Scripts.Helpers;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
@@ -13,7 +14,12 @@ public class Player : MonoBehaviour
 	{
 	    pickItemSound.Do(s => s.PlayEffect());
 		Destroy(h.gameObject);
+		if (Harvested != null)
+			Harvested (this, new HarvestEventArgs(h));
 	}
+
+
+	public event EventHandler<HarvestEventArgs> Harvested;
 
     public void Die()
     {
@@ -28,4 +34,14 @@ public class Player : MonoBehaviour
         Application.LoadLevel(Application.loadedLevelName);
         yield return null;
     }
+}
+
+public class HarvestEventArgs : EventArgs
+{
+	public Harvestable Harvestable { get; private set; }
+
+	public HarvestEventArgs(Harvestable harvestable)
+	{
+		Harvestable = harvestable;
+	}
 }
