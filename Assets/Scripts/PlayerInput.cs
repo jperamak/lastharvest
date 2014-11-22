@@ -15,6 +15,8 @@ public class PlayerInput : MonoBehaviour
     public float hookSpeed = 1f;
     public float grapplingSpeed = 1f;
     public bool disableMovementInAir;
+    public bool constantSpeedGrappling = true;
+    public float grapplingAcceleration = 2.0f;
 
     public Vector3 aimLaserOffset = Vector3.zero;
 
@@ -92,10 +94,6 @@ public class PlayerInput : MonoBehaviour
 	            distance.z = 0;
                 ThrowGrapplingHook(distance.normalized);
 	        }
-            else if(_isGrappling)
-            {
-                DetachGrappling();
-            }
 	    }
 	    else if (Input.GetMouseButtonUp(0))
 	    {
@@ -107,19 +105,26 @@ public class PlayerInput : MonoBehaviour
 
 		if (_isGrappling)
 	    {
-            var distance = _grapplingPoint.position - transform.position;
-	        if (Mathf.Abs(distance.x) < 2f && Mathf.Abs(distance.y) < 2f)
+            Vector2 direction = _grapplingPoint.position - transform.position;
+	        if (!constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
                 _controller.velocity = Vector3.zero;
                 return;
 	        }
 
-	        distance.z = 0;
-            distance.Normalize();
+            direction.Normalize();
 
-	        distance *= grapplingSpeed * Time.deltaTime;
-            _controller.move(new Vector3(distance.x, distance.y));
-	        return;
+	        direction *= grapplingSpeed * Time.deltaTime;
+	        if (constantSpeedGrappling)
+	        {
+                _controller.move(direction);
+	        }
+	        else
+	        {
+                _controller.velocity += (Vector3)direction * grapplingAcceleration;
+                _controller.move(_controller.velocity * Time.deltaTime);
+	        }
+            return;	        
 	    }
 
 		// grab our current _velocity to use as a base for all calculations
