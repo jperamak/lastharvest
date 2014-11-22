@@ -13,9 +13,8 @@ public class Player : MonoBehaviour
 	public void Harvest(Harvestable h)
 	{
 	    pickItemSound.Do(s => s.PlayEffect());
-		Destroy(h.gameObject);
-		if (Harvested != null)
-			Harvested (this, new HarvestEventArgs(h));
+		Harvested.RaiseEvent (this, new HarvestEventArgs (h));
+		Destroy (h.gameObject);
 	}
 
 

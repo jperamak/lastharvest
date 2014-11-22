@@ -3,27 +3,36 @@ using System.Collections;
 
 public class FamilyMember : MonoBehaviour {
 
-	public float health;
-	public float age;
-	public float taikanumero = 007f;
 
-	public FamilyMember()
+	public int health;
+	public int age;
+	public int taikanumero = 3;
+	public string name;
+
+	public FamilyMember(string n, int a = 0)
 	{
-		health = 100f;
-		age = 0f;
+		name = n;
+		health = 100;
+		age = a;
 	}
 
-	public bool Eat(int food)
+	public int Feed(int food)
 	{
 		if (food < taikanumero) {
 			health -= (taikanumero - food);
-			if (health < 0)
-				return false;
+			return 0;
 		}
 		else {
 			health += 10;
 			health = health < 100 ? health : 100; 
 		}
+		return food - taikanumero;
+	}
+
+	public bool DidSurvive()
+	{
+		if (health <= 0)
+			return false;
 		age++;
 		return true;
 	}
