@@ -21,13 +21,10 @@ public class GameController : MonoBehaviour {
 	private void OnHarvested(object sender, HarvestEventArgs args)
 	{
 		Debug.Log ("Harvested: " + args.Harvestable);
-		if (Done ())
-			NextLevel ();
-	}
-
-	private bool Done()
-	{
-		return ( GameObject.FindGameObjectWithTag("Harvestable") == null );
+		Destroy (args.Harvestable.gameObject);
+		if (!GameObject.FindGameObjectsWithTag("Harvestable").Any())
+			Debug.Log ("done");
+			//NextLevel ();
 	}
 
 	private void NextLevel()
