@@ -30,16 +30,17 @@ public class GameController : MonoBehaviour {
 			//StartCoroutine(NextLevel ());
 	}
 
-	IEnumerator NextLevel()
-	{
-		//loading screen
-		Feed ();
-		Application.LoadLevel ("LoadingScreen");
-		yield return new WaitForSeconds (5);
-		//feed family
-		Application.LoadLevel (++currenLevel);
-		harvestables = GameObject.FindGameObjectsWithTag ("Harvestable").Length;
-	}
+	//he type or namespace name `IEnumerator' could not be found, commented out to test animations/Tove
+//	IEnumerator NextLevel()
+//	{
+//		//loading screen
+//		Feed ();
+//		Application.LoadLevel ("LoadingScreen");
+//		yield return new WaitForSeconds (5);
+//		//feed family
+//		Application.LoadLevel (++currenLevel);
+//		harvestables = GameObject.FindGameObjectsWithTag ("Harvestable").Length;
+//	}
 
 	private void StartFamily()
 	{	
