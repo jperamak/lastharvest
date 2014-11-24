@@ -110,6 +110,8 @@ ModelImporter:
     4300000: Billy_rig
     7400000: Default Take
     7400002: Walking_cycle
+    7400004: Walk_cycle
+    7400006: Jump
     9500000: //RootNode
     11100000: //RootNode
     13700000: Billy_rig
@@ -130,8 +132,8 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walking_cycle
-      takeName: Walking_cycle
+      name: Walk_cycle
+      takeName: Walk_cycle
       firstFrame: 0
       lastFrame: 23
       wrapMode: 0
@@ -140,6 +142,136 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: armature
+        weight: 1
+      - path: armature/Bone_001
+        weight: 1
+      - path: armature/Bone_001/Bone
+        weight: 1
+      - path: armature/Bone_001/Roll_back
+        weight: 1
+      - path: armature/Bone_001/Roll_back/Roll_front
+        weight: 1
+      - path: armature/Bone_001/Roll_back/Roll_front/foot_L_001IK
+        weight: 1
+      - path: armature/Bone_001/Roll_back/Roll_front/foot_L_001IK/foot_L
+        weight: 1
+      - path: armature/Bone_001/Roll_back/Roll_front/foot_L_001IK/foot_L/toe_L
+        weight: 1
+      - path: armature/Bone_001/Roll_back/Roll_front/foot_L_001IK/Pole_target_L
+        weight: 1
+      - path: armature/Bone_004
+        weight: 1
+      - path: armature/Bone_004/Bone_002
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002/Roll_front_002
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002/Roll_front_002/foot_L_001IK_002
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002/Roll_front_002/foot_L_001IK_002/foot_R
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002/Roll_front_002/foot_L_001IK_002/foot_R/toe_R
+        weight: 1
+      - path: armature/Bone_004/Roll_back_002/Roll_front_002/foot_L_001IK_002/Pole_target_R
+        weight: 1
+      - path: armature/hips_main
+        weight: 1
+      - path: armature/hips_main/hips
+        weight: 1
+      - path: armature/hips_main/hips/chest
+        weight: 1
+      - path: armature/hips_main/hips/chest/head
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/f_index_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/f_index_01_L/f_index_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_01_L/thumb_01_L/thumb_02_L/thumb_03_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/f_middle_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_02_L/f_middle_01_L/f_middle_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/f_ring_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_03_L/f_ring_01_L/f_ring_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/f_pinky_01_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_L/upper_arm_L/forearm_L/hand_L/palm_04_L/f_pinky_01_L/f_pinky_02_L
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R/upper_arm_R
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R/upper_arm_R/forearm_R
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R/upper_arm_R/forearm_R/forearm_R_001
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R/upper_arm_R/forearm_R/forearm_R_002
+        weight: 1
+      - path: armature/hips_main/hips/chest/shoulder_R/upper_arm_R/forearm_R/forearm_R_003
+        weight: 1
+      - path: armature/hips_main/hips/thigh_L
+        weight: 1
+      - path: armature/hips_main/hips/thigh_L/shin_L
+        weight: 1
+      - path: armature/hips_main/hips/thigh_R
+        weight: 1
+      - path: armature/hips_main/hips/thigh_R/shin_R
+        weight: 1
+      - path: Billy_rig
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Jump
+      takeName: Jump
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
