@@ -145,7 +145,7 @@ public class PlayerInput : MonoBehaviour
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 
             if( _controller.isGrounded )
-                _animator.Play( Animator.StringToHash( "Run" ) );
+                _animator.Play("Run");
 		}
         else if (InputHelpers.IsAnyKey(KeyCode.LeftArrow, KeyCode.A) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
@@ -154,14 +154,14 @@ public class PlayerInput : MonoBehaviour
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 
             if( _controller.isGrounded )
-                _animator.Play( Animator.StringToHash( "Run" ) );
+                _animator.Play("Run");
 		}
 		else
 		{
 			normalizedHorizontalSpeed = 0;
 
             if( _controller.isGrounded )
-                _animator.Play( Animator.StringToHash( "Idle" ) );
+                _animator.Play("Idle");
 		}
 
 
@@ -169,7 +169,7 @@ public class PlayerInput : MonoBehaviour
         if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W, KeyCode.Space))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
-            _animator.Play( Animator.StringToHash( "Jump" ) );
+            _animator.Play("Jump");
 		}
 
 
