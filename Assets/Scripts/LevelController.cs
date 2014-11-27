@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -19,6 +20,7 @@ namespace Assets.Scripts
             _harvestables.AddRange(GameObject.FindGameObjectsWithTag("Harvestable").Select(o => o.GetComponent<Harvestable>()));
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             _player.Harvested += OnHarvested;
+            tag = Tags.LevelController;
         }
 
         public void Update()

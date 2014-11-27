@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -13,6 +14,7 @@ namespace Assets.Scripts
 
         public void Start()
         {
+            tag = Tags.GameController;
             DontDestroyOnLoad(this);
             StartFamily();
         }
