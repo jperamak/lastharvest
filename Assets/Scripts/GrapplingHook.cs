@@ -39,7 +39,6 @@ namespace Assets.Scripts
         private Transform _player;
 
         private LineRenderer line;	
-        private bool _rope = true;	
 
         public void Awake()
         {
@@ -73,17 +72,10 @@ namespace Assets.Scripts
 
         public void LateUpdate()
         {
-            if (_rope)
-            {
-                line.SetPosition(0, transform.position);
-                line.SetPosition(1, _player.transform.position);
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, _player.transform.position);
 
-                line.enabled = true;
-            }
-            else
-            {
-                line.enabled = false;
-            }
+            line.enabled = true;
         }
 
         public void Connect(HookConnector connector)
@@ -98,6 +90,8 @@ namespace Assets.Scripts
             if (!collision.collider.tag.Equals(_hookConnectorTag))
             {
                 collideSound.Do(s => s.PlayEffect());
+                grabSound.Stop();
+                //pullBackSound.PlayEffect();
                 _player.GetComponent<PlayerInput>().DetachGrappling();
             }
         }

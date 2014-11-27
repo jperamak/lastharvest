@@ -42,6 +42,11 @@ namespace Assets.Scripts
             }
         }
 
+        public void Stop()
+        {
+            _audioClips.ForEach(c => c.Stop());
+        }
+
         private void PlayEffect(AudioSource effect)
         {
             effect.Do(c => c.volume = Random.Range(minVolume, maxVolume))
