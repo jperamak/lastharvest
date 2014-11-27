@@ -3,20 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Assets.Scripts
 {
-
     public class GameController : MonoBehaviour
     {
-
-        public static int food;
+        public int food;
         private Player _player;
         public int currenLevel = 1;
         public List<FamilyMember> family;
         private int harvestables;
 
-        void Start()
+        public void Start()
         {
             _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             _player.Harvested += OnHarvested;
@@ -35,7 +32,6 @@ namespace Assets.Scripts
             //StartCoroutine(NextLevel ());
         }
 
-        //he type or namespace name `IEnumerator' could not be found, commented out to test animations/Tove
         private IEnumerator NextLevel()
         {
             //loading screen
