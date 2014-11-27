@@ -24,8 +24,6 @@ namespace Assets.Scripts
             }
             _timeToFullSize = duration/2.0f;
             _originalScale = transform.localScale;
-            _originalPosition = transform.position;
-
         }
 
         public void Update()
