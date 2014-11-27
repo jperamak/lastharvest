@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
     public bool disableMovementInAir;
     public bool constantSpeedGrappling = true;
     public float grapplingAcceleration = 2.0f;
+    public Vector3 windSpeed = new Vector3(0, 0, 0);
 
     [Range(0.0f, 0.1f)]
     public float grapplingDamping = 0.01f;
@@ -131,7 +132,7 @@ public class PlayerInput : MonoBehaviour
 	    }
 
 		// grab our current _velocity to use as a base for all calculations
-		_velocity = _controller.velocity;
+		_velocity = _controller.velocity + windSpeed;
 
 		if( _controller.isGrounded )
 			_velocity.y = 0;
