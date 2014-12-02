@@ -1,8 +1,12 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Helpers;
+﻿using Assets.Scripts.Helpers;
 using UnityEngine;
 
-public class Harvestable : MonoBehaviour {
+public class Harvestable : MonoBehaviour 
+{
+    public void Awake()
+    {
+        tag = Tags.Harvestable;
+    }
 
 	public void OnTriggerEnter2D(Collider2D other)
 	{

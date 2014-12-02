@@ -17,6 +17,10 @@ public class PlayerInput : MonoBehaviour
     public bool disableMovementInAir;
     public bool constantSpeedGrappling = true;
     public float grapplingAcceleration = 2.0f;
+    public Vector3 windSpeed = new Vector3(0, 0, 0);
+
+    [Range(0.0f, 0.1f)]
+    public float grapplingDamping = 0.01f;
 
     public Vector3 aimLaserOffset = Vector3.zero;
 
@@ -41,7 +45,7 @@ public class PlayerInput : MonoBehaviour
 
 	public void Awake()
 	{
-		//_animator = GetComponent<Animator>();
+		_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
 	    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 	    _lineRenderer = GetComponent<LineRenderer>();
@@ -106,7 +110,7 @@ public class PlayerInput : MonoBehaviour
 		if (_isGrappling)
 	    {
             Vector2 direction = _grapplingPoint.position - transform.position;
-	        if (!constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
+	        if (constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
                 _controller.velocity = Vector3.zero;
                 return;
@@ -122,13 +126,13 @@ public class PlayerInput : MonoBehaviour
 	        else
 	        {
                 _controller.velocity += (Vector3)direction * grapplingAcceleration;
-                _controller.move(_controller.velocity * Time.deltaTime);
+                _controller.move(_controller.velocity * Time.deltaTime * (1-grapplingDamping));
 	        }
             return;	        
 	    }
 
 		// grab our current _velocity to use as a base for all calculations
-		_velocity = _controller.velocity;
+		_velocity = _controller.velocity + windSpeed;
 
 		if( _controller.isGrounded )
 			_velocity.y = 0;
@@ -140,8 +144,8 @@ public class PlayerInput : MonoBehaviour
 			if( transform.localScale.x < 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 
-            //if( _controller.isGrounded )
-            //    _animator.Play( Animator.StringToHash( "Run" ) );
+            if( _controller.isGrounded )
+                _animator.Play("Run");
 		}
         else if (InputHelpers.IsAnyKey(KeyCode.LeftArrow, KeyCode.A) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
@@ -149,15 +153,15 @@ public class PlayerInput : MonoBehaviour
 			if( transform.localScale.x > 0f )
 				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
 
-            //if( _controller.isGrounded )
-            //    _animator.Play( Animator.StringToHash( "Run" ) );
+            if( _controller.isGrounded )
+                _animator.Play("Run");
 		}
 		else
 		{
 			normalizedHorizontalSpeed = 0;
 
-            //if( _controller.isGrounded )
-            //    _animator.Play( Animator.StringToHash( "Idle" ) );
+            if( _controller.isGrounded )
+                _animator.Play("Idle");
 		}
 
 
@@ -165,7 +169,7 @@ public class PlayerInput : MonoBehaviour
         if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W, KeyCode.Space))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
-            //_animator.Play( Animator.StringToHash( "Jump" ) );
+            _animator.Play("Jump");
 		}
 
 

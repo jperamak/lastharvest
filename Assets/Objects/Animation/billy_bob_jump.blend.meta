@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e8a20f147fd66894f9e14b55747b627e
+guid: 5dcb9e4fa0d8b6e4382cd323f211d11c
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
@@ -109,7 +109,7 @@ ModelImporter:
     400102: upper_arm_R
     4300000: Billy_rig
     7400000: Default Take
-    7400002: armatureAction
+    7400002: Jump
     7400004: PoseLib
     9500000: //RootNode
     13700000: Billy_rig

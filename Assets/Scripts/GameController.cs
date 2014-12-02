@@ -1,61 +1,64 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Helpers;
+using UnityEngine;
 
+namespace Assets.Scripts
+{
+    public class GameController : MonoBehaviour
+    {
+        public int food;
+        public int currenLevel = 1;
+        public List<FamilyMember> family;
 
-public class GameController : MonoBehaviour {
+        public void Start()
+        {
+            tag = Tags.GameController;
+            DontDestroyOnLoad(this);
+            StartFamily();
+        }
 
-	public static int food;
-	private Player _player;
-	public int currenLevel = 1;
-	public List<FamilyMember> family;
+        public void GoToNextLevel()
+        {
+            StartCoroutine(NextLevel());
+        }
 
-	void Start ()
-	{
-	    _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-	    _player.Harvested += OnHarvested;
-		DontDestroyOnLoad(this);
-		StartFamily ();
-	}
+        public void FailLevel()
+        {
+            Debug.Log("Level failed :(");
+        }
 
-	private void OnHarvested(object sender, HarvestEventArgs args)
-	{
-		Debug.Log ("Harvested: " + args.Harvestable);
-		if (Done ())
-			NextLevel ();
-	}
+        private IEnumerator NextLevel()
+        {
+            //loading screen
+            Feed();
+            Application.LoadLevel("LoadingScreen");
+            yield return new WaitForSeconds(5);
+            //feed family
+            Application.LoadLevel(++currenLevel);
+        }
 
-	private bool Done()
-	{
-		return ( GameObject.FindGameObjectWithTag("Harvestable") == null );
-	}
+        private void StartFamily()
+        {
+            family = new List<FamilyMember>
+            {
+                new FamilyMember("Billy-Bob", 23),
+                new FamilyMember("Wifey", 19),
+                new FamilyMember("Babby1", 3),
+                new FamilyMember("Babby2", 1)
+            };
+        }
 
-	private void NextLevel()
-	{
-		//loading screen
-		//feed family
+        private void Feed()
+        {
+            foreach (FamilyMember fm in family.ToList())
+            {
+                food = fm.Feed(food);
+                if (!fm.DidSurvive())
+                    family.Remove(fm);
+            }
+        }
 
-
-		Application.LoadLevel (++currenLevel);
-	}
-
-	private void StartFamily()
-	{	
-		family = new List<FamilyMember> ();
-		family.Add (new FamilyMember("Billy-Bob", 23));
-		family.Add (new FamilyMember("Wifey", 19));
-		family.Add (new FamilyMember("Babby1", 3));
-		family.Add (new FamilyMember("Babby2", 1));
-	}
-
-	private void Feed()
-	{
-		foreach (FamilyMember fm in family.ToList())
-		{
-			food = fm.Feed(food);
-			if (!fm.DidSurvive())
-				family.Remove(fm);
-		}
-	}
-
+    }
 }
