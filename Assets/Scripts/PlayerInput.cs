@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 
     private Camera _mainCamera;
     private LineRenderer _lineRenderer;
+    private bool left = false;
 
 	public void Awake()
 	{
@@ -139,10 +140,12 @@ public class PlayerInput : MonoBehaviour
 
         if (InputHelpers.IsAnyKey(KeyCode.RightArrow, KeyCode.D) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
-
 			normalizedHorizontalSpeed = 1;
-			if( transform.localScale.x < 0f )
-				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+            if (left)
+            {
+                transform.RotateAround(transform.position, Vector3.up, -180);
+                left = !left;
+            }
 
             if( _controller.isGrounded )
                 _animator.Play("Run");
@@ -150,8 +153,11 @@ public class PlayerInput : MonoBehaviour
         else if (InputHelpers.IsAnyKey(KeyCode.LeftArrow, KeyCode.A) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
 		{
 			normalizedHorizontalSpeed = -1;
-			if( transform.localScale.x > 0f )
-				transform.localScale = new Vector3( -transform.localScale.x, transform.localScale.y, transform.localScale.z );
+            if (!left)
+            {
+                transform.RotateAround(transform.position, Vector3.up, 180);
+                left = !left;
+            }
 
             if( _controller.isGrounded )
                 _animator.Play("Run");
