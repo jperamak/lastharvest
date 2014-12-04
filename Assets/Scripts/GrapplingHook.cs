@@ -42,6 +42,14 @@ namespace Assets.Scripts
 
         public void Awake()
         {
+
+            throwSound = (SoundEffect)Instantiate(throwSound);
+            grabSound = (SoundEffect)Instantiate(grabSound);
+            collideSound = (SoundEffect)Instantiate(collideSound);
+            pullBackSound = (SoundEffect)Instantiate(pullBackSound);
+            pullBackEndSound = (SoundEffect)Instantiate(pullBackEndSound);
+            releaseSound = (SoundEffect)Instantiate(releaseSound);
+
             line = gameObject.GetComponent<LineRenderer>();
             line.SetColors(Color.white, Color.black);
             line.SetWidth(0.9f, 0.9f);

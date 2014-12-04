@@ -17,6 +17,12 @@ public class Player : MonoBehaviour
 		//Destroy (h.gameObject);
 	}
 
+    public void Awake()
+    {
+        pickItemSound = (SoundEffect)Instantiate(pickItemSound);
+        dieSound = (SoundEffect)Instantiate(dieSound);
+    }
+
 
 	public event EventHandler<HarvestEventArgs> Harvested;
 
