@@ -20,7 +20,9 @@ public class Player : MonoBehaviour
     public void Awake()
     {
         pickItemSound = (SoundEffect)Instantiate(pickItemSound);
+        pickItemSound.transform.SetParent(this.transform);
         dieSound = (SoundEffect)Instantiate(dieSound);
+        dieSound.transform.SetParent(this.transform);
     }
 
 

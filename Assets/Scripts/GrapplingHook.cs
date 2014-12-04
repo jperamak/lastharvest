@@ -44,11 +44,17 @@ namespace Assets.Scripts
         {
 
             throwSound = (SoundEffect)Instantiate(throwSound);
+            throwSound.transform.SetParent(this.transform);
             grabSound = (SoundEffect)Instantiate(grabSound);
+            grabSound.transform.SetParent(this.transform); 
             collideSound = (SoundEffect)Instantiate(collideSound);
+            collideSound.transform.SetParent(this.transform); 
             pullBackSound = (SoundEffect)Instantiate(pullBackSound);
+            pullBackSound.transform.SetParent(this.transform); 
             pullBackEndSound = (SoundEffect)Instantiate(pullBackEndSound);
+            pullBackEndSound.transform.SetParent(this.transform); 
             releaseSound = (SoundEffect)Instantiate(releaseSound);
+            releaseSound.transform.SetParent(this.transform);
 
             line = gameObject.GetComponent<LineRenderer>();
             line.SetColors(Color.white, Color.black);
