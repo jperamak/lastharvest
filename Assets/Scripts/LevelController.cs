@@ -69,7 +69,7 @@ namespace Assets.Scripts
             Destroy(args.Harvestable.gameObject);
             if (!_harvestables.Any())
             {
-                _gameController.GoToNextLevel();
+                _gameController.GoToNextLevel(100);
             }
         }
     }
