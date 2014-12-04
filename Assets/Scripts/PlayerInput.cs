@@ -28,6 +28,8 @@ public class PlayerInput : MonoBehaviour
     private GrapplingHook _hookPrefab;
     public GrapplingHook HookPrefab { get { return _hookPrefab; } }
 
+    public Transform grapplingArm;
+
 	[HideInInspector]
 	private float normalizedHorizontalSpeed = 0;
 
@@ -189,9 +191,15 @@ public class PlayerInput : MonoBehaviour
 		_controller.move( _velocity * Time.deltaTime );
 	}
 
+    private int foo = 0;
+
     public void LateUpdate()
     {
-        DrawHookAimLine(_mainCamera.ScreenToWorldPoint(Input.mousePosition));
+        Vector2 aimPoint = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        DrawHookAimLine(aimPoint);
+        var oldRot = grapplingArm.rotation.eulerAngles;
+        var direction = (aimPoint - (Vector2)transform.position).normalized;
+        grapplingArm.rotation = Quaternion.Euler(direction.AngleAtan() - 90, oldRot.y, oldRot.z);
     }
 
     private void DrawHookAimLine(Vector2 mousePosition)
