@@ -49,11 +49,11 @@ public class Harvestable : MonoBehaviour
         }
     }
 
-	public void OnTriggerEnter2D(Collider2D other)
+    public void OnCollisionEnter2D(Collision2D collision)
 	{
-        if (other.gameObject.CompareTag(Tags.Player))
+        if (collision.gameObject.CompareTag(Tags.Player))
         {
-            other.GetComponent<Player>().Harvest(this);
+            collision.gameObject.GetComponent<Player>().Harvest(this);
         }
 	}
 }

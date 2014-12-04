@@ -35,19 +35,18 @@ public class Player : MonoBehaviour
 
 
 	public event EventHandler<HarvestEventArgs> Harvested;
+    public event EventHandler Died;
 
     public void Die()
     {
-        StartCoroutine(RestartLevel());
+        RestartLevel();
     }
 
-    private IEnumerator RestartLevel()
+    private void RestartLevel()
     {
         dieSound.Do(s => s.PlayEffect());
         
-		//yield return new WaitForSeconds(1.0f);
-        Application.LoadLevel(Application.loadedLevelName);
-        yield return null;
+        Died.RaiseEvent(this, new EventArgs());
     }
 }
 
