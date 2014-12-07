@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Helpers;
+﻿using Assets.Scripts.Helpers;
 using UnityEngine;
 
 public class Hazard : MonoBehaviour 
@@ -10,6 +9,5 @@ public class Hazard : MonoBehaviour
 	    {
 	        other.GetComponent<Player>().Die();
 	    }
-
 	}
 }

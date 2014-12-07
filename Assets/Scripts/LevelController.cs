@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Helpers;
 using UnityEngine;
@@ -12,15 +13,45 @@ namespace Assets.Scripts
         private GameController _gameController;
         private Player _player;
 
-        private readonly List<Harvestable> _harvestables = new List<Harvestable>(); 
+        private readonly List<Harvestable> _harvestables = new List<Harvestable>();
+        private readonly List<Spawner> _spawners = new List<Spawner>(); 
 
         public void Start()
         {
-            _gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
-            _harvestables.AddRange(GameObject.FindGameObjectsWithTag("Harvestable").Select(o => o.GetComponent<Harvestable>()));
-            _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            _player.Harvested += OnHarvested;
+            _gameController = GameObject.FindGameObjectWithTag(Tags.GameController).GetComponent<GameController>();
             tag = Tags.LevelController;
+
+            _spawners.AddRange(GameObject.FindGameObjectsWithTag(Tags.Spawner).Select(o => o.GetComponent<Spawner>()));
+            SpawnPlayerAndItems();
+        }
+
+        private void SpawnPlayerAndItems()
+        {
+            foreach (var spawner in _spawners)
+            {
+                var thing = spawner.Spawn();
+                if (thing.GetComponent<Harvestable>() != null)
+                {
+                    _harvestables.Add(thing.GetComponent<Harvestable>());
+                }
+                if (thing.GetComponent<Player>() != null)
+                {
+                    _player = thing.GetComponent<Player>();
+                    _player.Harvested += OnHarvested;
+                    _player.Died += OnDied;
+                }
+            }
+        }
+
+        private void OnDied(object sender, EventArgs e)
+        {
+            _player.Died -= OnDied;
+            _player.Harvested -= OnHarvested;
+            Destroy(_player.gameObject);
+            _player = null;
+            _harvestables.ForEach(h => Destroy(h.gameObject));
+            _harvestables.Clear();
+            SpawnPlayerAndItems();
         }
 
         public void Update()
@@ -38,7 +69,7 @@ namespace Assets.Scripts
             Destroy(args.Harvestable.gameObject);
             if (!_harvestables.Any())
             {
-                _gameController.GoToNextLevel();
+                _gameController.GoToNextLevel(100);
             }
         }
     }

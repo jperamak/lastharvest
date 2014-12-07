@@ -12,6 +12,11 @@ namespace Assets.Scripts
         public int currenLevel = 1;
         public List<FamilyMember> family;
 
+        public int Score
+        {
+            get; private set;
+        }
+
         public void Start()
         {
             tag = Tags.GameController;
@@ -19,21 +24,22 @@ namespace Assets.Scripts
             StartFamily();
         }
 
-        public void GoToNextLevel()
+        public void GoToNextLevel(int levelScore = 0)
         {
+            Score += levelScore;
             StartCoroutine(NextLevel());
         }
 
         public void FailLevel()
         {
-            Debug.Log("Level failed :(");
+            Application.LoadLevel("ScoreScreen");
         }
 
         private IEnumerator NextLevel()
         {
             //loading screen
             Feed();
-            Application.LoadLevel("LoadingScreen");
+            Application.LoadLevel("ScoreScreen");
             yield return new WaitForSeconds(5);
             //feed family
             Application.LoadLevel(++currenLevel);

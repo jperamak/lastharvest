@@ -12,7 +12,15 @@ public class Player : MonoBehaviour
 
 	public void Harvest(Harvestable h)
 	{
-	    pickItemSound.Do(s => s.PlayEffect());
+	    if (h.pickUpSound == null)
+	    {
+            pickItemSound.Do(s => s.PlayEffect());
+	    }
+	    else
+	    {
+	        h.pickUpSound.PlayEffect();
+	    }
+	    
 		Harvested.RaiseEvent (this, new HarvestEventArgs (h));
 		//Destroy (h.gameObject);
 	}
@@ -27,19 +35,18 @@ public class Player : MonoBehaviour
 
 
 	public event EventHandler<HarvestEventArgs> Harvested;
+    public event EventHandler Died;
 
     public void Die()
     {
-        StartCoroutine(RestartLevel());
+        RestartLevel();
     }
 
-    private IEnumerator RestartLevel()
+    private void RestartLevel()
     {
         dieSound.Do(s => s.PlayEffect());
         
-		//yield return new WaitForSeconds(1.0f);
-        Application.LoadLevel(Application.loadedLevelName);
-        yield return null;
+        Died.RaiseEvent(this, new EventArgs());
     }
 }
 

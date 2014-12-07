@@ -8,5 +8,6 @@
         public const string Harvestable = "Harvestable";
         public const string LevelController = "LevelController";
         public const string GameController = "GameController";
+        public const string Spawner = "Spawner";
     }
 }
