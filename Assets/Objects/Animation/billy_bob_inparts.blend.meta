@@ -65,6 +65,8 @@ ModelImporter:
     7400004: death
     7400006: PoseLib
     7400008: Walking_cycle
+    7400010: superman_pose_animation
+    7400012: Idle
     9500000: //RootNode
     13700000: Billy_rig
   materials:
@@ -393,6 +395,170 @@ ModelImporter:
         weight: 1
       - path: metarig/hips/chest/upper_arm_R/forearm_R/thumb_01_R
         weight: 1
+      - path: metarig/hips/thigh_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L/foot_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L/foot_L/toe_L
+        weight: 1
+      - path: metarig/hips/thigh_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R/foot_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R/foot_R/toe_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: superman_pose_animation
+      takeName: superman_pose_animation
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Billy_rig
+        weight: 0
+      - path: metarig
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/chest
+        weight: 1
+      - path: metarig/hips/chest/head
+        weight: 1
+      - path: metarig/hips/chest/head/head_001
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L/f_middle_02_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L/f_middle_02_L/f_middle_03_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L/thumb_02_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L/thumb_02_L/thumb_03_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R/palm_02_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R/thumb_01_R
+        weight: 0
+      - path: metarig/hips/thigh_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L/foot_L
+        weight: 1
+      - path: metarig/hips/thigh_L/shin_L/foot_L/toe_L
+        weight: 1
+      - path: metarig/hips/thigh_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R/foot_R
+        weight: 1
+      - path: metarig/hips/thigh_R/shin_R/foot_R/toe_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Billy_rig
+        weight: 0
+      - path: metarig
+        weight: 1
+      - path: metarig/hips
+        weight: 1
+      - path: metarig/hips/chest
+        weight: 1
+      - path: metarig/hips/chest/head
+        weight: 1
+      - path: metarig/hips/chest/head/head_001
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L/f_middle_02_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/f_middle_01_L/f_middle_02_L/f_middle_03_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L/thumb_02_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_L/forearm_L/hand_L/thumb_01_L/thumb_02_L/thumb_03_L
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R/palm_02_R
+        weight: 1
+      - path: metarig/hips/chest/upper_arm_R/forearm_R/thumb_01_R
+        weight: 0
       - path: metarig/hips/thigh_L
         weight: 1
       - path: metarig/hips/thigh_L/shin_L
