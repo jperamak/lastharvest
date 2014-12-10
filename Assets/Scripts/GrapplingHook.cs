@@ -36,7 +36,7 @@ namespace Assets.Scripts
         public SoundEffect pullBackEndSound;
         public SoundEffect releaseSound;
 
-        private Transform _player;
+        private PlayerInput _player;
 
         private LineRenderer line;	
 
@@ -67,7 +67,7 @@ namespace Assets.Scripts
             line.SetWidth(0.9f, 0.9f);
             line.SetVertexCount(2);
             line.material = new Material(Shader.Find("Particles/Additive"));
-            _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
+            _player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerInput>();
             throwSound.Do(s => s.PlayEffect());
             StartCoroutine(PreventFromHooking(preventFromHookingSeconds));
         }
@@ -83,7 +83,7 @@ namespace Assets.Scripts
         public void FixedUpdate()
         {
             transform.position += _velocity;
-            if((transform.position - _player.position).magnitude >= MaxLength)
+            if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
             {
                 pullBackSound.Do(s => s.PlayEffect());
                 Destroy(gameObject);
@@ -93,7 +93,7 @@ namespace Assets.Scripts
         public void LateUpdate()
         {
             line.SetPosition(0, transform.position);
-            line.SetPosition(1, _player.transform.position);
+            line.SetPosition(1, _player.transform.position + _player.aimLaserOffset);
 
             line.enabled = true;
         }

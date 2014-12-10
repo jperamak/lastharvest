@@ -228,7 +228,7 @@ public class PlayerInput : MonoBehaviour
 
     public void DetachGrappling()
     {
-        if (_isGrappling)
+        if (_isGrappling && _hook != null && _hook.enabled)
         {
             _isGrappling = false;
             _hook.Do(h => Destroy(h.gameObject));
