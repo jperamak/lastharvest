@@ -40,9 +40,11 @@ namespace Assets.Scripts
             //loading screen
             Feed();
             Application.LoadLevel("ScoreScreen");
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(2);
             //feed family
+			++currenLevel;
             Application.LoadLevel(++currenLevel);
+
         }
 
         private void StartFamily()
