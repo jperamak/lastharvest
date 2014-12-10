@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        GetComponent<PlayerInput>().DetachGrappling();
         RestartLevel();
     }
 

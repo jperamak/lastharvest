@@ -14,7 +14,8 @@ namespace Assets.Scripts
         private Player _player;
 
         private readonly List<Harvestable> _harvestables = new List<Harvestable>();
-        private readonly List<Spawner> _spawners = new List<Spawner>(); 
+        private readonly List<Spawner> _spawners = new List<Spawner>();
+        private readonly List<MovingPlatform> _movingPlatforms = new List<MovingPlatform>(); 
 
         public void Start()
         {
@@ -22,6 +23,11 @@ namespace Assets.Scripts
             tag = Tags.LevelController;
 
             _spawners.AddRange(GameObject.FindGameObjectsWithTag(Tags.Spawner).Select(o => o.GetComponent<Spawner>()));
+            _movingPlatforms.AddRange(
+                GameObject.FindGameObjectsWithTag(Tags.MovingPlatform)
+                    .Where(p => p.GetComponent<MovingPlatform>() != null)
+                    .Select(o => o.GetComponent<MovingPlatform>()));
+
             SpawnPlayerAndItems();
         }
 
@@ -51,6 +57,7 @@ namespace Assets.Scripts
             _player = null;
             _harvestables.ForEach(h => Destroy(h.gameObject));
             _harvestables.Clear();
+            _movingPlatforms.ForEach(p => p.Reset());
             SpawnPlayerAndItems();
         }
 
