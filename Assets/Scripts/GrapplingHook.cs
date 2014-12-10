@@ -47,8 +47,14 @@ namespace Assets.Scripts
             throwSound.transform.SetParent(this.transform);
             grabSound = (SoundEffect)Instantiate(grabSound);
             grabSound.transform.SetParent(this.transform); 
-            collideSound = (SoundEffect)Instantiate(collideSound);
-            collideSound.transform.SetParent(this.transform); 
+            GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            if (gc.collideSound == null)
+            {
+                collideSound = (SoundEffect)Instantiate(collideSound);
+                collideSound.transform.SetParent(gc.transform);
+            }
+            else
+                collideSound = gc.collideSound;
             pullBackSound = (SoundEffect)Instantiate(pullBackSound);
             pullBackSound.transform.SetParent(this.transform); 
             pullBackEndSound = (SoundEffect)Instantiate(pullBackEndSound);

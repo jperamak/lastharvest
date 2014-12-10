@@ -12,6 +12,9 @@ namespace Assets.Scripts
         public int currentLevel = 2;
         public List<FamilyMember> family;
 
+        //ugly hax
+        public SoundEffect collideSound;
+
         public int Score
         {
             get; private set;

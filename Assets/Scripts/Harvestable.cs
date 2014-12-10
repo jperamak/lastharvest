@@ -30,7 +30,7 @@ public class Harvestable : MonoBehaviour
         if (pickUpSound != null)
         {
             pickUpSound = Instantiate(pickUpSound) as SoundEffect;
-            pickUpSound.transform.parent = transform;
+            //pickUpSound.transform.parent = transform;
         }
     }
 

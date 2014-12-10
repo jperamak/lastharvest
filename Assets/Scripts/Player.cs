@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         pickItemSound = (SoundEffect)Instantiate(pickItemSound);
         pickItemSound.transform.SetParent(this.transform);
         dieSound = (SoundEffect)Instantiate(dieSound);
-        dieSound.transform.SetParent(this.transform);
+       // dieSound.transform.SetParent(this.transform);
     }
 
 
