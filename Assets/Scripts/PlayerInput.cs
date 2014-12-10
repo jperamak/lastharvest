@@ -191,15 +191,12 @@ public class PlayerInput : MonoBehaviour
 		_controller.move( _velocity * Time.deltaTime );
 	}
 
-    private int foo = 0;
-
     public void LateUpdate()
     {
         Vector2 aimPoint = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         DrawHookAimLine(aimPoint);
-        var oldRot = grapplingArm.rotation.eulerAngles;
-        var direction = (aimPoint - (Vector2)transform.position).normalized;
-        grapplingArm.rotation = Quaternion.Euler(direction.AngleAtan() - 90, oldRot.y, oldRot.z);
+        var direction = (aimPoint - (Vector2)grapplingArm.position).normalized;
+        grapplingArm.RotateAround(grapplingArm.position, Vector3.back, direction.AngleAtan() - transform.rotation.eulerAngles.y);
     }
 
     private void DrawHookAimLine(Vector2 mousePosition)
