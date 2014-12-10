@@ -46,8 +46,13 @@ public class PlayerInput : MonoBehaviour
     private LineRenderer _lineRenderer;
     private bool left = false;
 
+    private Player _player;
+
+
 	public void Awake()
 	{
+        _player = GetComponent<Player>();
+
 		_animator = GetComponent<Animator>();
 		_controller = GetComponent<CharacterController2D>();
 	    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -113,6 +118,7 @@ public class PlayerInput : MonoBehaviour
 		if (_isGrappling)
 	    {
             Vector2 direction = _grapplingPoint.position - transform.position;
+            _animator.Play("Fly");
 	        if (constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
                 _controller.velocity = Vector3.zero;
@@ -178,7 +184,8 @@ public class PlayerInput : MonoBehaviour
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
             _animator.Play("Jump");
-		}
+            _player.jumpSound.Do(s => s.PlayEffect());
+        }
 
 
 		// apply horizontal speed smoothing it
