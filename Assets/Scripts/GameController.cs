@@ -9,7 +9,7 @@ namespace Assets.Scripts
     public class GameController : MonoBehaviour
     {
         public int food;
-        public int currentLevel = 3;
+        public int currentLevel = 2;
         public List<FamilyMember> family;
 
         public int Score
