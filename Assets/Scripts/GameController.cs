@@ -9,7 +9,7 @@ namespace Assets.Scripts
     public class GameController : MonoBehaviour
     {
         public int food;
-        public int currenLevel = 1;
+        public int currentLevel = 3;
         public List<FamilyMember> family;
 
         public int Score
@@ -37,13 +37,14 @@ namespace Assets.Scripts
 
         private IEnumerator NextLevel()
         {
-            //loading screen
+            //feed family
             Feed();
+            //loading screen
             Application.LoadLevel("ScoreScreen");
             yield return new WaitForSeconds(2);
-            //feed family
-			++currenLevel;
-            Application.LoadLevel(++currenLevel);
+
+            var a = true;
+            Application.LoadLevel(++currentLevel);
 
         }
 
