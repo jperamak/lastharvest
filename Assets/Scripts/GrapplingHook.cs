@@ -40,6 +40,8 @@ namespace Assets.Scripts
 
         private LineRenderer line;	
 
+		private bool _connected = false;
+
         public void Awake()
         {
 
@@ -82,6 +84,8 @@ namespace Assets.Scripts
 
         public void FixedUpdate()
         {
+			if (_connected)
+								return;
             transform.position += _velocity;
             if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
             {
@@ -103,6 +107,7 @@ namespace Assets.Scripts
             _velocity = Vector3.zero;
             _player.GetComponent<PlayerInput>().Grapple(connector.transform);
             grabSound.Do(s => s.PlayEffect());
+			_connected = true;
         }
 
         public void OnCollisionEnter2D(Collision2D collision)
