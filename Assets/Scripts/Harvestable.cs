@@ -43,7 +43,7 @@ public class Harvestable : MonoBehaviour
             _timeElapsed = 0;
         }
 
-        if (!_characterController.isGrounded)
+        if (_characterController != null && !_characterController.isGrounded)
         {
             _characterController.move(new Vector3(_characterController.velocity.x, _characterController.velocity.y + gravity * Time.deltaTime) * Time.deltaTime);
         }
