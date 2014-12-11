@@ -24,7 +24,7 @@ namespace Assets.Scripts
         {
             tag = Tags.GameController;
             DontDestroyOnLoad(this);
-            StartFamily();
+            //StartFamily();
         }
 
         public void GoToNextLevel(int levelScore = 0)
@@ -35,13 +35,14 @@ namespace Assets.Scripts
 
         public void FailLevel()
         {
-            Application.LoadLevel("ScoreScreen");
+            StartCoroutine(NextLevel());
+            //Application.LoadLevel("ScoreScreen");
         }
 
         private IEnumerator NextLevel()
         {
             //feed family
-            Feed();
+            //Feed();
             //loading screen
             Application.LoadLevel("ScoreScreen");
             yield return new WaitForSeconds(2);
