@@ -16,6 +16,7 @@ namespace Assets.Scripts
 
         public void Awake()
         {
+            tag = Tags.MovingPlatform;
             _startPoint = transform.position;
         }
 
@@ -34,6 +35,12 @@ namespace Assets.Scripts
             }
 
             _gameObjectsOnPlatform.ForEach(go => go.Do(o => o.transform.position += (Vector3)direction));
+        }
+
+        public void Reset()
+        {
+            transform.position = _startPoint;
+            _gameObjectsOnPlatform.Clear();
         }
 
         public void OnCollisionEnter2D(Collision2D collision2D)

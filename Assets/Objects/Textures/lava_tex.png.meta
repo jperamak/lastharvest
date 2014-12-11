@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 4835b5ead08a640cc9ad5ef4b5fc1d70
+guid: e09af92bf11e3ae4c9e3984371203edc
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: lava_tex
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0

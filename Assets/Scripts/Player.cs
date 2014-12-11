@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public SoundEffect pickItemSound;
     public SoundEffect dieSound;
+    public SoundEffect jumpSound;
 
 	public void Harvest(Harvestable h)
 	{
@@ -27,10 +28,13 @@ public class Player : MonoBehaviour
 
     public void Awake()
     {
+        jumpSound = (SoundEffect)Instantiate(jumpSound);
+        jumpSound.transform.SetParent(this.transform);
+    
         pickItemSound = (SoundEffect)Instantiate(pickItemSound);
         pickItemSound.transform.SetParent(this.transform);
         dieSound = (SoundEffect)Instantiate(dieSound);
-        dieSound.transform.SetParent(this.transform);
+       // dieSound.transform.SetParent(this.transform);
     }
 
 
@@ -39,6 +43,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        GetComponent<PlayerInput>().DetachGrappling();
         RestartLevel();
     }
 

@@ -9,8 +9,11 @@ namespace Assets.Scripts
     public class GameController : MonoBehaviour
     {
         public int food;
-        public int currenLevel = 1;
+        public int currentLevel = 2;
         public List<FamilyMember> family;
+
+        //ugly hax
+        public SoundEffect collideSound;
 
         public int Score
         {
@@ -37,12 +40,15 @@ namespace Assets.Scripts
 
         private IEnumerator NextLevel()
         {
-            //loading screen
-            Feed();
-            Application.LoadLevel("ScoreScreen");
-            yield return new WaitForSeconds(5);
             //feed family
-            Application.LoadLevel(++currenLevel);
+            Feed();
+            //loading screen
+            Application.LoadLevel("ScoreScreen");
+            yield return new WaitForSeconds(2);
+
+            var a = true;
+            Application.LoadLevel(++currentLevel);
+
         }
 
         private void StartFamily()

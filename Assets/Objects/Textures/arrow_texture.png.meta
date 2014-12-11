@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 2f8e47f07eb254dc8ac4d58e1a365490
+guid: 3925d4103e85a3141b8514c64cfb7b22
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: arrow_texture
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0

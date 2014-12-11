@@ -36,7 +36,7 @@ namespace Assets.Scripts
         public SoundEffect pullBackEndSound;
         public SoundEffect releaseSound;
 
-        private Transform _player;
+        private PlayerInput _player;
 
         private LineRenderer line;	
 
@@ -47,8 +47,14 @@ namespace Assets.Scripts
             throwSound.transform.SetParent(this.transform);
             grabSound = (SoundEffect)Instantiate(grabSound);
             grabSound.transform.SetParent(this.transform); 
-            collideSound = (SoundEffect)Instantiate(collideSound);
-            collideSound.transform.SetParent(this.transform); 
+            GameController gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+            if (gc.collideSound == null)
+            {
+                collideSound = (SoundEffect)Instantiate(collideSound);
+                collideSound.transform.SetParent(gc.transform);
+            }
+            else
+                collideSound = gc.collideSound;
             pullBackSound = (SoundEffect)Instantiate(pullBackSound);
             pullBackSound.transform.SetParent(this.transform); 
             pullBackEndSound = (SoundEffect)Instantiate(pullBackEndSound);
@@ -61,7 +67,7 @@ namespace Assets.Scripts
             line.SetWidth(0.9f, 0.9f);
             line.SetVertexCount(2);
             line.material = new Material(Shader.Find("Particles/Additive"));
-            _player = GameObject.FindGameObjectWithTag(Tags.Player).transform;
+            _player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerInput>();
             throwSound.Do(s => s.PlayEffect());
             StartCoroutine(PreventFromHooking(preventFromHookingSeconds));
         }
@@ -77,7 +83,7 @@ namespace Assets.Scripts
         public void FixedUpdate()
         {
             transform.position += _velocity;
-            if((transform.position - _player.position).magnitude >= MaxLength)
+            if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
             {
                 pullBackSound.Do(s => s.PlayEffect());
                 Destroy(gameObject);
@@ -87,7 +93,7 @@ namespace Assets.Scripts
         public void LateUpdate()
         {
             line.SetPosition(0, transform.position);
-            line.SetPosition(1, _player.transform.position);
+            line.SetPosition(1, _player.transform.position + _player.aimLaserOffset);
 
             line.enabled = true;
         }

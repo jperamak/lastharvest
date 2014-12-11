@@ -1,11 +1,12 @@
 fileFormatVersion: 2
-guid: 8b94437ed55ec41f9a75ebe46ea56cd1
+guid: af51e65f3bc0df343b06d2863c3f7d21
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: sign_texture_flammable
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0

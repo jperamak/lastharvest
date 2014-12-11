@@ -6,13 +6,15 @@ public class CameraController : MonoBehaviour
 
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
-    public Transform target;
+    private Transform target;
 
     public float LevelWidth;
     public float LevelHeight;
 
     void Update()
     {
+        if (target == null)
+            target = GameObject.FindGameObjectWithTag("Player").transform;
         if (target)
         {
             Vector3 point = camera.WorldToViewportPoint(target.position);
