@@ -13,6 +13,8 @@ namespace Assets.Scripts
         private GameController _gameController;
         private Player _player;
 
+		private int _harvestedCount = 0;
+
         private readonly List<Harvestable> _harvestables = new List<Harvestable>();
         private readonly List<Spawner> _spawners = new List<Spawner>();
         private readonly List<MovingPlatform> _movingPlatforms = new List<MovingPlatform>(); 
@@ -73,10 +75,11 @@ namespace Assets.Scripts
         private void OnHarvested(object sender, HarvestEventArgs args)
         {
             _harvestables.Remove(args.Harvestable);
+			_harvestedCount++;
             Destroy(args.Harvestable.gameObject);
             if (!_harvestables.Any())
             {
-                _gameController.GoToNextLevel(100);
+                _gameController.GoToNextLevel(_harvestedCount * timeInSeconds);
             }
         }
     }
