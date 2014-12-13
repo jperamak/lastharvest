@@ -183,10 +183,14 @@ public class PlayerInput : MonoBehaviour
         if (_controller.isGrounded && InputHelpers.IsAnyKey(KeyCode.UpArrow, KeyCode.W, KeyCode.Space))
 		{
 			_velocity.y = Mathf.Sqrt( 2f * jumpHeight * -gravity );
-            _animator.Play("Jump");
+            //_animator.Play("Jump");
             _player.jumpSound.Do(s => s.PlayEffect());
         }
 
+        if (InputHelpers.IsAnyKey(KeyCode.R))
+        {
+            _player.Die();
+        }
 
 		// apply horizontal speed smoothing it
 		var smoothedMovementFactor = _controller.isGrounded ? groundDamping : inAirDamping; // how fast do we change direction?

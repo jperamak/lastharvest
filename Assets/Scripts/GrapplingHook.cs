@@ -102,10 +102,10 @@ namespace Assets.Scripts
             line.enabled = true;
         }
 
-        public void Connect(HookConnector connector)
+        public void Connect(Transform connector)
         {
             _velocity = Vector3.zero;
-            _player.GetComponent<PlayerInput>().Grapple(connector.transform);
+            _player.GetComponent<PlayerInput>().Grapple(connector);
             grabSound.Do(s => s.PlayEffect());
 			_connected = true;
         }
