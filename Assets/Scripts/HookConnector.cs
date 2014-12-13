@@ -9,7 +9,7 @@ namespace Assets.Scripts
             var hook = collision.collider.GetComponent<GrapplingHook>();
             if (hook != null)
             {
-                hook.Connect(this);
+                hook.Connect(collision.transform);
             }
         }
     }

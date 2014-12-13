@@ -14,6 +14,7 @@ namespace Assets.Scripts
 
         //ugly hax
         public SoundEffect collideSound;
+        public int numberOfLevels;
 
         public int Score
         {
@@ -35,8 +36,19 @@ namespace Assets.Scripts
 
         public void FailLevel()
         {
-            StartCoroutine(NextLevel());
+            StartCoroutine(Restart());
             //Application.LoadLevel("ScoreScreen");
+        }
+
+        private IEnumerator Restart()
+        {
+            Application.LoadLevel("ScoreScreen");
+            yield return new WaitForSeconds(2);
+            Score = 0;
+
+            //var a = true; // does nothing does not work without, dunno lol
+            currentLevel = 2;
+            Application.LoadLevel("level_tutorial_jumps");
         }
 
         private IEnumerator NextLevel()
@@ -47,9 +59,11 @@ namespace Assets.Scripts
             Application.LoadLevel("ScoreScreen");
             yield return new WaitForSeconds(2);
 
-            var a = true;
-            Application.LoadLevel(++currentLevel);
-
+            var a = true; // does nothing does not work without, dunno lol
+            if (++currentLevel <= numberOfLevels + 2)
+                Application.LoadLevel(currentLevel);
+            else
+                Application.LoadLevel("EndScreen");
         }
 
         private void StartFamily()
