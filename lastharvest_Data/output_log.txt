@@ -1,0 +1,66 @@
+Initialize engine version: 4.6.0b17 (2d43734a3870)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 755M (ID=0xfcd)
+    Vendor:   NVIDIA
+    VRAM:     1952 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.177 seconds
+desktop: 1920x1080 59Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+Platform assembly: C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Tove\Desktop\LastHarvest\lastharvest_Data\Managed\System.dll (this message is harmless)
+UnloadTime: 1.610111 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 873.
+Total: 2.955932 ms (FindLiveObjects: 0.097077 ms CreateObjectMapping: 0.047469 ms MarkObjects: 0.433639 ms  DeleteObjects: 0.751812 ms)
+
+UnloadTime: 7.964597 ms
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 290 unused Assets to reduce memory usage. Loaded Objects now: 201.
+Total: 9.710274 ms (FindLiveObjects: 0.050462 ms CreateObjectMapping: 0.031646 ms MarkObjects: 0.265572 ms  DeleteObjects: 7.698597 ms)
+
+UnloadTime: 3.032055 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 976.
+Total: 2.395280 ms (FindLiveObjects: 0.103064 ms CreateObjectMapping: 0.051318 ms MarkObjects: 0.530716 ms  DeleteObjects: 0.064575 ms)
+
+UnloadTime: 4.993268 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 285 unused Assets to reduce memory usage. Loaded Objects now: 287.
+Total: 16.197330 ms (FindLiveObjects: 0.116321 ms CreateObjectMapping: 0.096649 ms MarkObjects: 0.550816 ms  DeleteObjects: 12.268062 ms)
+
+UnloadTime: 0.895931 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1024.
+Total: 2.399984 ms (FindLiveObjects: 0.128295 ms CreateObjectMapping: 0.054739 ms MarkObjects: 0.565356 ms  DeleteObjects: 0.064147 ms)
+
+onTriggerEnterEvent: DangerCube
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 3.177456 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 291 unused Assets to reduce memory usage. Loaded Objects now: 336.
+Total: 10.573704 ms (FindLiveObjects: 0.064575 ms CreateObjectMapping: 0.046614 ms MarkObjects: 0.602989 ms  DeleteObjects: 8.316127 ms)
+
+UnloadTime: 0.913465 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1799.
+Total: 2.573184 ms (FindLiveObjects: 0.179613 ms CreateObjectMapping: 0.070134 ms MarkObjects: 0.667565 ms  DeleteObjects: 0.068852 ms)
+
