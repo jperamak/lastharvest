@@ -59,7 +59,6 @@ public class PlayerInput : MonoBehaviour
 	    _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.SetVertexCount(2);
         //_lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-        _lineRenderer.SetColors(Color.black, Color.red);
         _lineRenderer.SetWidth(0.4f, 0.4f);
 		// listen to some events for illustration purposes
 		_controller.onControllerCollidedEvent += onControllerCollider;
