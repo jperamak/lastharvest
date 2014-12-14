@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
 	    }
 	    
 		Harvested.RaiseEvent (this, new HarvestEventArgs (h));
-		//Destroy (h.gameObject);
 	}
 
     public void Awake()

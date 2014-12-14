@@ -53,7 +53,7 @@ public class PlayerInput : MonoBehaviour
 	{
         _player = GetComponent<Player>();
 
-		_animator = GetComponent<Animator>();
+	    _animator = GetComponentInChildren<Animator>();
 		_controller = GetComponent<CharacterController2D>();
 	    _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 	    _lineRenderer = GetComponent<LineRenderer>();
@@ -151,7 +151,7 @@ public class PlayerInput : MonoBehaviour
 			normalizedHorizontalSpeed = 1;
             if (left)
             {
-                transform.RotateAround(transform.position, Vector3.up, -180);
+                transform.GetChild(0).transform.RotateAround(transform.position, Vector3.up, -180);
                 left = !left;
             }
 
@@ -163,7 +163,7 @@ public class PlayerInput : MonoBehaviour
 			normalizedHorizontalSpeed = -1;
             if (!left)
             {
-                transform.RotateAround(transform.position, Vector3.up, 180);
+                transform.GetChild(0).transform.RotateAround(transform.position, Vector3.up, 180);
                 left = !left;
             }
 

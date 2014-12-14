@@ -76,7 +76,6 @@ namespace Assets.Scripts
         {
             _harvestables.Remove(args.Harvestable);
 			_harvestedCount++;
-            Destroy(args.Harvestable.gameObject);
             if (!_harvestables.Any())
             {
                 _gameController.GoToNextLevel(_harvestedCount * (int)timeInSeconds);
