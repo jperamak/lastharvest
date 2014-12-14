@@ -1,4 +1,7 @@
 ﻿using System.Globalization;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Helpers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +13,7 @@ namespace Assets.Scripts.Menu
     {
         private GameController _gameController;
         private Text _scoreText;
+        private bool end = false;
 
         public void Awake()
         {
@@ -19,7 +23,19 @@ namespace Assets.Scripts.Menu
 
         public void Update()
         {
-            _scoreText.text = _gameController.Score.ToString(CultureInfo.InvariantCulture);
+            _scoreText.text = _gameController.Score.ToString(CultureInfo.InvariantCulture);        
+            if ( !end && Application.loadedLevelName == "EndScreen" ) 
+            {
+                end = true;
+                StartCoroutine(Restart());
+            }
+        }
+
+        private IEnumerator Restart()
+        {
+            yield return new WaitForSeconds(10);
+            Destroy(GameObject.FindGameObjectWithTag("GameController"));
+            Application.LoadLevel("Start");
         }
     }
 }
