@@ -13,7 +13,7 @@ namespace Assets.Scripts
             {
                 hook.Connect(collision.transform);
                 var explosion = (ParticleSystem)Instantiate(connectEffect);
-                explosion.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+                explosion.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -10);
             }
         }
     }
