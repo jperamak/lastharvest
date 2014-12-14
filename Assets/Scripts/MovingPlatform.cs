@@ -12,6 +12,7 @@ namespace Assets.Scripts
         private Vector2 _startPoint;
         private bool _movingTowardsEndPoint = true;
 
+        private Player _player;
         private readonly List<GameObject> _gameObjectsOnPlatform = new List<GameObject>();
 
         public void Awake()
@@ -45,12 +46,28 @@ namespace Assets.Scripts
 
         public void OnCollisionEnter2D(Collision2D collision2D)
         {
-            _gameObjectsOnPlatform.Add(collision2D.gameObject);   
+            _gameObjectsOnPlatform.Add(collision2D.gameObject);
+            var harvestable = collision2D.gameObject.GetComponent<Harvestable>();
+            if (harvestable != null)
+            {
+                harvestable.Harvested += OnHarvested;
+            }
+        }
+
+        private void OnHarvested(object sender, HarvestEventArgs e)
+        {
+            _gameObjectsOnPlatform.Remove(e.Harvestable.gameObject);
+            e.Harvestable.Harvested -= OnHarvested;
         }
 
         public void OnCollisionExit2D(Collision2D collision2D)
         {
             _gameObjectsOnPlatform.Remove(collision2D.gameObject);
+            var harvestable = collision2D.gameObject.GetComponent<Harvestable>();
+            if (harvestable != null)
+            {
+                harvestable.Harvested -= OnHarvested;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Helpers;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController2D))]
@@ -53,7 +54,11 @@ public class Harvestable : MonoBehaviour
 	{
         if (collision.gameObject.CompareTag(Tags.Player))
         {
+            Harvested.RaiseEvent(this, new HarvestEventArgs(this));
             collision.gameObject.GetComponent<Player>().Harvest(this);
+            Destroy(gameObject);
         }
 	}
+
+    public event EventHandler<HarvestEventArgs> Harvested;
 }
