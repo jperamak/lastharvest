@@ -207,7 +207,7 @@ public class PlayerInput : MonoBehaviour
         Vector2 aimPoint = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
         DrawHookAimLine(aimPoint);
         var direction = (aimPoint - (Vector2)grapplingArm.position).normalized;
-        grapplingArm.RotateAround(grapplingArm.position, Vector3.back, direction.AngleAtan() - transform.rotation.eulerAngles.y);
+        grapplingArm.RotateAround(grapplingArm.position, Vector3.back, direction.AngleAtan() - transform.GetChild(0).rotation.eulerAngles.y);
     }
 
     private void DrawHookAimLine(Vector2 mousePosition)
