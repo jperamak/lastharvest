@@ -36,6 +36,8 @@ namespace Assets.Scripts
         public SoundEffect pullBackEndSound;
         public SoundEffect releaseSound;
 
+        public ParticleSystem sparks;
+
         private PlayerInput _player;
 
         private LineRenderer line;	
@@ -65,9 +67,6 @@ namespace Assets.Scripts
             releaseSound.transform.SetParent(this.transform);
 
             line = gameObject.GetComponent<LineRenderer>();
-            line.SetColors(Color.white, Color.black);
-            line.SetWidth(0.9f, 0.9f);
-            line.SetVertexCount(2);
             //line.material = new Material(Shader.Find("Particles/Additive"));
             _player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<PlayerInput>();
             throwSound.Do(s => s.PlayEffect());
@@ -85,7 +84,8 @@ namespace Assets.Scripts
         public void FixedUpdate()
         {
 			if (_connected)
-								return;
+				return;
+
             transform.position += _velocity;
             if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
             {
@@ -116,6 +116,8 @@ namespace Assets.Scripts
             {
                 collideSound.Do(s => s.PlayEffect());
                 grabSound.Stop();
+                var sp = (ParticleSystem)Instantiate(sparks);
+                sp.transform.position = transform.position;
                 //pullBackSound.PlayEffect();
                 _player.GetComponent<PlayerInput>().DetachGrappling();
             }

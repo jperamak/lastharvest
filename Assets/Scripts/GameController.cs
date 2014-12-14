@@ -28,6 +28,14 @@ namespace Assets.Scripts
             //StartFamily();
         }
 
+        public void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+        }
+
         public void GoToNextLevel(int levelScore = 0)
         {
             Score += levelScore;
