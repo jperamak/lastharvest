@@ -36,7 +36,6 @@ namespace Assets.Scripts
         public SoundEffect pullBackEndSound;
         public SoundEffect releaseSound;
 
-        public ParticleSystem leafExplosion;
         public ParticleSystem sparks;
 
         private PlayerInput _player;
@@ -108,8 +107,6 @@ namespace Assets.Scripts
             _velocity = Vector3.zero;
             _player.GetComponent<PlayerInput>().Grapple(connector);
             grabSound.Do(s => s.PlayEffect());
-            var explosion = (ParticleSystem)Instantiate(leafExplosion);
-            explosion.transform.position = transform.position;
 			_connected = true;
         }
 
