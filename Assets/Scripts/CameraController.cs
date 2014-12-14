@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts.Helpers;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class CameraController : MonoBehaviour
     public float LevelWidth;
     public float LevelHeight;
 
-    void Update()
+    public void Update()
     {
         if (target == null)
-            target = GameObject.FindGameObjectWithTag("Player").transform;
+            target = GameObject.FindGameObjectWithTag(Tags.Player).transform;
         if (target)
         {
             Vector3 point = camera.WorldToViewportPoint(target.position);
