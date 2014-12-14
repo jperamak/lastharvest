@@ -11,7 +11,7 @@ namespace Assets.Scripts
             var hook = collision.collider.GetComponent<GrapplingHook>();
             if (hook != null)
             {
-                hook.Connect(collision.transform);
+                hook.Connect(transform);
                 var explosion = (ParticleSystem)Instantiate(connectEffect);
                 explosion.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y, -10);
             }

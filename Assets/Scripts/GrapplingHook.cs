@@ -43,6 +43,13 @@ namespace Assets.Scripts
         private LineRenderer line;	
 
 		private bool _connected = false;
+        private Transform _connector;
+        private Vector3 _lastConnectorPosition;
+
+        public Vector3 GrapplingPoint
+        {
+            get { return _lastConnectorPosition; }
+        }
 
         public void Awake()
         {
@@ -83,8 +90,16 @@ namespace Assets.Scripts
 
         public void FixedUpdate()
         {
-			if (_connected)
-				return;
+            if (_connected)
+            {
+                if (!_connector.transform.position.Equals(_lastConnectorPosition))
+                {
+                    transform.position += _connector.transform.position - _lastConnectorPosition;
+                    _lastConnectorPosition = _connector.transform.position;
+                }
+                return;
+            }
+
 
             transform.position += _velocity;
             if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
@@ -108,11 +123,13 @@ namespace Assets.Scripts
             _player.GetComponent<PlayerInput>().Grapple(connector);
             grabSound.Do(s => s.PlayEffect());
 			_connected = true;
+            _connector = connector;
+            _lastConnectorPosition = connector.transform.position;
         }
 
         public void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.collider.tag.Equals(_hookConnectorTag))
+            if (!_connected && !collision.collider.tag.Equals(_hookConnectorTag))
             {
                 collideSound.Do(s => s.PlayEffect());
                 grabSound.Stop();

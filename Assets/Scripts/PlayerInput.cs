@@ -40,7 +40,6 @@ public class PlayerInput : MonoBehaviour
 
     private GrapplingHook _hook;
     private bool _isGrappling;
-    private Transform _grapplingPoint;
 
     private Camera _mainCamera;
     private LineRenderer _lineRenderer;
@@ -116,7 +115,7 @@ public class PlayerInput : MonoBehaviour
 
 		if (_isGrappling)
 	    {
-            Vector2 direction = _grapplingPoint.position - transform.position;
+            Vector2 direction = _hook.GrapplingPoint - transform.position;
             _animator.Play("Fly");
 	        if (constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
@@ -225,7 +224,6 @@ public class PlayerInput : MonoBehaviour
 
     public void Grapple(Transform grapplingPoint)
     {
-        _grapplingPoint = grapplingPoint;
         _isGrappling = true;
     }
 
