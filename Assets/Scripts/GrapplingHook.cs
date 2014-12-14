@@ -37,6 +37,7 @@ namespace Assets.Scripts
         public SoundEffect releaseSound;
 
         public ParticleSystem leafExplosion;
+        public ParticleSystem sparks;
 
         private PlayerInput _player;
 
@@ -87,7 +88,8 @@ namespace Assets.Scripts
         public void FixedUpdate()
         {
 			if (_connected)
-								return;
+				return;
+
             transform.position += _velocity;
             if ((transform.position - (_player.transform.position + _player.aimLaserOffset)).magnitude >= MaxLength)
             {
@@ -120,6 +122,8 @@ namespace Assets.Scripts
             {
                 collideSound.Do(s => s.PlayEffect());
                 grabSound.Stop();
+                var sp = (ParticleSystem)Instantiate(sparks);
+                sp.transform.position = transform.position;
                 //pullBackSound.PlayEffect();
                 _player.GetComponent<PlayerInput>().DetachGrappling();
             }
