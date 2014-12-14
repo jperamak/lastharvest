@@ -117,7 +117,7 @@ namespace Assets.Scripts
                 collideSound.Do(s => s.PlayEffect());
                 grabSound.Stop();
                 var sp = (ParticleSystem)Instantiate(sparks);
-                sp.transform.position = transform.position;
+                sp.transform.position = collision.transform.position;
                 //pullBackSound.PlayEffect();
                 _player.GetComponent<PlayerInput>().DetachGrappling();
             }
