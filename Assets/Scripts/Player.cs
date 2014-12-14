@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public SoundEffect dieSound;
     public SoundEffect jumpSound;
 
+    public ParticleSystem explosionEffect;
+
 	public void Harvest(Harvestable h)
 	{
 	    if (h.pickUpSound == null)
@@ -49,6 +51,8 @@ public class Player : MonoBehaviour
     private void RestartLevel()
     {
         dieSound.Do(s => s.PlayEffect());
+        var explosion = Instantiate(explosionEffect) as ParticleSystem;
+        explosion.transform.position = transform.position;
         
         Died.RaiseEvent(this, new EventArgs());
     }
