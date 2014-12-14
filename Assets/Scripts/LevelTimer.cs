@@ -7,17 +7,20 @@ namespace Assets.Scripts
     public class LevelTimer : MonoBehaviour
     {
         private LevelController _levelController;
-        private Text _timerTimeText;
-        
+        private Image _watchHand;
+
+        private float _rotationPerSecond;
+
         public void Awake()
         {
-            _levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
-            _timerTimeText = GetComponent<Text>();
+            _levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();      
+            _rotationPerSecond = 360/_levelController.timeInSeconds;
+            _watchHand = GetComponent<Image>();
         }
 
         public void Update()
         {
-            _timerTimeText.text = _levelController.timeInSeconds.ToString("0.0");
+            _watchHand.GetComponent<RectTransform>().RotateAround(transform.position, Vector3.forward, -_rotationPerSecond * Time.deltaTime);
         }
     }
 }
