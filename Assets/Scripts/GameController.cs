@@ -46,46 +46,19 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(2);
             Score = 0;
 
-            //var a = true; // does nothing does not work without, dunno lol
             currentLevel = 2;
             Application.LoadLevel("level_tutorial_jumps");
         }
 
         private IEnumerator NextLevel()
         {
-            //feed family
-            //Feed();
-            //loading screen
             Application.LoadLevel("ScoreScreen");
             yield return new WaitForSeconds(2);
 
-            var a = true; // does nothing does not work without, dunno lol
-            if (++currentLevel <= numberOfLevels + 2)
+            if (++currentLevel <= numberOfLevels)
                 Application.LoadLevel(currentLevel);
             else
                 Application.LoadLevel("EndScreen");
         }
-
-        private void StartFamily()
-        {
-            family = new List<FamilyMember>
-            {
-                new FamilyMember("Billy-Bob", 23),
-                new FamilyMember("Wifey", 19),
-                new FamilyMember("Babby1", 3),
-                new FamilyMember("Babby2", 1)
-            };
-        }
-
-        private void Feed()
-        {
-            foreach (FamilyMember fm in family.ToList())
-            {
-                food = fm.Feed(food);
-                if (!fm.DidSurvive())
-                    family.Remove(fm);
-            }
-        }
-
     }
 }
