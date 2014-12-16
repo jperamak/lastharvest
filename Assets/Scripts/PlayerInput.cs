@@ -115,7 +115,7 @@ public class PlayerInput : MonoBehaviour
 
 		if (_isGrappling)
 	    {
-            Vector2 direction = _hook.GrapplingPoint - transform.position;
+            Vector2 direction = _hook.GrapplingPoint - (transform.position + aimLaserOffset);
             _animator.Play("Fly");
 	        if (constantSpeedGrappling  && Mathf.Abs(direction.x) < 2f && Mathf.Abs(direction.y) < 2f)
 	        {
@@ -141,7 +141,7 @@ public class PlayerInput : MonoBehaviour
 		// grab our current _velocity to use as a base for all calculations
 		_velocity = _controller.velocity + windSpeed;
 
-		if( _controller.isGrounded )
+		if( _controller.isGrounded & !_isGrappling)
 			_velocity.y = 0;
 
         if (InputHelpers.IsAnyKey(KeyCode.RightArrow, KeyCode.D) && (!disableMovementInAir || (disableMovementInAir && _controller.isGrounded)))
