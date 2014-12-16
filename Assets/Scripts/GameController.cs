@@ -54,7 +54,7 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(2);
             Score = 0;
 
-            currentLevel = 2;
+            currentLevel = 1;
             Application.LoadLevel("level_tutorial_jumps");
         }
 
